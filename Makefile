@@ -6,7 +6,7 @@
 #    By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 20:05:20 by nvillalt          #+#    #+#              #
-#    Updated: 2024/02/19 20:55:56 by nvillalt         ###   ########.fr        #
+#    Updated: 2024/02/28 18:31:32 by nvillalt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,53 +26,47 @@ NAME = so_long
 SRC_PATH = src/
 OBJ_PATH = obj/
 INC_PATH = inc/
-LIBFT_DIR = libft/
-MLX_DIR = minilibx/
 
-#···COMPILER····#
-CC = gcc
+#····CC + FLAGS ···#
+CC = cc
 CFLAGS = -Wall -Wextra #-Werror -g3
-CFLAGS += -I $(INC_PATH) -I $(LIBFT_DIR) -I $(SRC_PATH)
+CFLAGS += -I $(INC_PATH) -I $(LIBFT_DIR) -I $(SRC_PATH) 
+MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+
+#···INC········#
+INC = so_long.h
 
 #···SRCS········#
 SRC = main.c
-
-INC = so_long.h
-
 OBJ_NAME = $(SRC:%.c=%.o)
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 
-
-#···RM··········#
 RM = rm -rf
 
 #···LIBFT·······#
+#LIBFT
 LIBFT_DIR = libft
+# search for .a in current directory
 LDFLAGS = -L $(LIBFT_DIR)
+# lib name
 LDLIBS = -lft
-
-#···MINILIBX····#
-MLX_DIR = minilibx
-LDFLAGS = -L $(MLX_DIR)
-LDLIBS = -mlx
 
 #···RULES······#
 .PHONY: all re clean fclean debug
-all clean fclean re $(NAME) $(LIBF) $(MLX) $(OBJS)
 
 all: $(NAME)
 	@echo "\033[2K\r${GRN}[CREATED]\033[0m $(NAME)\n"
 
 $(NAME): $(OBJ)
 	make -sC $(LIBFT_DIR)
-	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS) $(LDLIBS)
+	$(CC) $^ -o $@ $(CFLAGS) $(MLX_FLAGS) $(LDFLAGS) $(LDLIBS)
 	@echo "\033[2K\r${PUR}[COMPILING LIBFT]${RST}'$<'\n"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC_PATH)/$(INC)
 	@mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) -c $< -o $@
 	@echo "\033[2K\r${BLU}[COMPILING SOURCES]${RST}'$<'\n"
-	
+
 debug: CFLAGS += -fsanitize=address -g3
 debug: $(NAME)
 
