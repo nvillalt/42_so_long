@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvillalt <nvillalt@student.42madrid>       +#+  +:+       +#+        */
+/*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:07:56 by nvillalt          #+#    #+#             */
-/*   Updated: 2023/10/06 13:21:28 by nvillalt         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:34:26 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ size_t	ft_strlen(const char *str)
 
 	count = 0;
 	while (str[count] != '\0')
+	{
 		count++;
+	}
 	return (count);
 }

@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nvillalt <nvillalt@student.42madrid.com    +#+  +:+       +#+         #
+#    By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/23 11:59:52 by nvillalt          #+#    #+#              #
-#    Updated: 2023/12/30 11:30:55 by nvillalt         ###   ########.fr        #
+#    Updated: 2023/12/22 17:32:24 by nvillalt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 AR = ar -rc
 
@@ -52,6 +52,8 @@ SRCS = ft_atoi.c \
 	   ft_striteri.c \
 	   ft_split.c \
 	   ft_strcmp.c \
+	   get_next_line.c \
+	   get_next_line_utils.c \
 	   ft_putstr.c
 
 BONUS = ft_lstnew_bonus.c \
@@ -74,14 +76,14 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(OBJS_BONUS)
+	$(AR) $(NAME) $(OBJS) $(OBJS_BONUS)
 
-bonus: $(OBJS_BONUS) $(NAME)
-	$(AR) $(NAME) $(OBJS_BONUS)
+# BONUS goes together with the main functions, 
+# modified from the actual lib
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS) $(OBJS_BONUS)
