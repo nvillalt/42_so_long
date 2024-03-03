@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+#include <stdio.h>
 /*
 https://en.wikipedia.org/wiki/Flood_fill
 
@@ -37,20 +37,15 @@ El mapa debe tener una salida, al menos un objeto y una posición inicial.
 
 int main(int argc, char **argv)
 {
-/* 	if (argc != 2)
-		return (1); */
-	void	*mlx;
-	void	*mlx_window;
+	char	*map;
 
- 	mlx = mlx_init();
-	if (mlx)
+	if (argc != 2 || ft_strncmpend(argv[1], ".ber", 4) == false)
+	{
+			printf("DA ERROR");
 		return (1);
-	mlx_window = mlx_new_window (mlx, 1080, 720, "window");
-	if (!mlx_window)
-		return(1);
-	mlx_loop (mlx);
-	mlx_destroy_window (mlx, mlx_window);
-	free (mlx); // liberar el puntero que inicializa la mlx cuando se termine
+	}
+/* 	if (parse_map(argv[1], &map) == true)
+	//	init_graphics(&map); */
 	return (0);
 }
 
@@ -66,4 +61,17 @@ int main(int argc, char **argv)
 		return(1);
 	mlx_loop (mlx);
 	mlx_destroy_window (mlx, mlx_window);
-	free (mlx); // liberar el puntero que inicializa la mlx cuando se termine*/
+	free (mlx); // liberar el puntero que inicializa la mlx cuando se termine */
+
+/* 	void	*mlx;
+	void	*mlx_window;
+
+ 	mlx = mlx_init();
+	if (mlx)
+		return (1);
+	mlx_window = mlx_new_window (mlx, 1080, 720, "window");
+	if (!mlx_window)
+		return(1);
+	mlx_loop (mlx);
+	mlx_destroy_window (mlx, mlx_window);
+	free (mlx); // liberar el puntero que inicializa la mlx cuando se termine */

@@ -37,7 +37,7 @@ MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 INC = so_long.h
 
 #···SRCS········#
-SRC = main.c
+SRC = main.c parse.c utils.c
 OBJ_NAME = $(SRC:%.c=%.o)
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 
@@ -56,10 +56,10 @@ LDLIBS = -lft
 
 all: $(NAME)
 	@echo "\033[2K\r${GRN}[CREATED]\033[0m $(NAME)\n"
-
+# $(MLX_FLAGS)  > AÑADIRLAS A $(NAME) RULE
 $(NAME): $(OBJ)
 	make -sC $(LIBFT_DIR)
-	$(CC) $^ -o $@ $(CFLAGS) $(MLX_FLAGS) $(LDFLAGS) $(LDLIBS)
+	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS) $(LDLIBS)
 	@echo "\033[2K\r${PUR}[COMPILING LIBFT]${RST}'$<'\n"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC_PATH)/$(INC)
