@@ -37,15 +37,17 @@ El mapa debe tener una salida, al menos un objeto y una posición inicial.
 
 int main(int argc, char **argv)
 {
-	char	*map;
+	t_mapgraph *map_info;
 
+	map_info = NULL;
 	if (argc != 2 || ft_strncmpend(argv[1], ".ber", 4) == false)
 	{
-			printf("DA ERROR");
-		return (1);
+			write(1, "Wrong extension or arg amount.\n", 31);
+			return (1);
 	}
-/* 	if (parse_map(argv[1], &map) == true)
-	//	init_graphics(&map); */
+	init_struct(&map_info);
+	parse_map(argv[1], &map_info);
+	//	init_graphics(&map);
 	return (0);
 }
 
