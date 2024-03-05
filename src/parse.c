@@ -19,7 +19,7 @@ bool  read_map(t_mapgraph *map_info)
 
   i = 0;
   str = get_next_line(map_info->fd);
-  map_info->map[i] = str;
+  map_info->map[i] = str;  // Da error porque la doble matriz no está bien hecha
   printf("%s", str);
   printf("%s", map_info->map[i]);
   // free(str);
