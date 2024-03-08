@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/02/28 19:29:46 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:21:28 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int main(int argc, char **argv)
 	map_info = init_struct(); // Inicializado aquí pero algunas asignaciones de memoria se harán en otros puntos, cuidado con eso (creo que se liberará cuando libere la lista, pero cuidado con la doble matriz)
 	parse_map(argv[1], &map_info);
 	//	init_graphics(&map);
+	free(map_info);
+	system("leaks -q so_long");
 	return (0);
 }
 

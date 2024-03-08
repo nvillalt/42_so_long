@@ -12,23 +12,6 @@ bool	error_message(int n)
 	return (EXIT_FAILURE);
 }
 
-bool ft_strncmpend(char *s1, char *s2, size_t n)
-{
-	size_t	len;
-
-	len = ft_strlen(s1) - 1;
-	if (n == 0)
-		return (0);
-	while (n > 0)
-	{
-		--n;
-		if (s1[len] != s2[n])
-			return (false);
-		len--;
-	}
-	return(true);
-}
-
 t_mapgraph	*init_struct(void)
 {
 	t_mapgraph	*map_info;

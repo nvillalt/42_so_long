@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvillalt <nvillalt@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 09:36:41 by nvillalt          #+#    #+#             */
-/*   Updated: 2023/12/27 11:05:04 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:59:46 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,5 @@ char	*ft_strjoin_gnl(char *saved, char *buffer)
 		j++;
 	}
 	free(saved);
-	saved = 0;
 	return (join);
 }
