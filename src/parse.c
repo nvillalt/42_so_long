@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/08 16:22:41 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:01:04 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,11 @@ static bool  file_to_map(t_mapgraph **map_info)
   }
   free(str);
   free(aux);
-/*   (*map_info)->map = ft_split(aux, '\n');
-  int i = 0;
-  while ((*map_info)->map[i])
-  {
-    printf("%s", (*map_info)->map[i]);
-    i++;
-  } */
+  (*map_info)->map = ft_split(aux, '\n');
   return (true);
 }
 
+// LIBERAR LA ALOJACIÓN DE MEMORIA DEL MAPA. 
 bool  parse_map(char *argv, t_mapgraph **map_info)
 {
   (*map_info)->fd = open(argv, O_RDONLY); // Close ???
