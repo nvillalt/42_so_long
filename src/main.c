@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 			write(1, "Wrong extension or arg amount.\n", 31);
 			return (1);
 	}
-	init_struct(&map_info);
+	map_info = init_struct(); // Inicializado aquí pero algunas asignaciones de memoria se harán en otros puntos, cuidado con eso (creo que se liberará cuando libere la lista, pero cuidado con la doble matriz)
 	parse_map(argv[1], &map_info);
 	//	init_graphics(&map);
 	return (0);
