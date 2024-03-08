@@ -6,17 +6,27 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:02:06 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/08 16:10:42 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/08 18:03:06 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool ft_strncmpend(char *s1, char *s2, size_t n)
+int	ft_strlen_mod(char *str)
 {
-	size_t	len;
+	int	count;
 
-	len = ft_strlen(s1) - 1;
+	count = 0;
+	while (str[count] != '\0' && str[count] != '\n')
+		count++;
+	return (count);
+}
+
+bool	ft_strncmpend(char *s1, char *s2, int n)
+{
+	int	len;
+
+	len = ft_strlen_mod(s1) - 1;
 	if (n == 0)
 		return (0);
 	while (n > 0)

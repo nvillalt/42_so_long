@@ -6,30 +6,66 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/08 17:01:04 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/08 19:23:13 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* The function check_chars makes sure that no character
-   apart from the allowed ones are present in the lines read
-   by gnl. If a not allowed character is present, the function
-   exits.*/
-
-static bool  check_chars(char *str)
+static bool exit_collectables_check(t_mapgraph **map_info)
 {
-  int i;
-  int len;
-  
-  i = 0;
-  len = ft_strlen(str);
-  while (i < len) // len - 1 para poder saltar el \n
+  int x;
+  int y;
+
+  x = 0;
+  while (x < (*map_info)->win_height)
   {
-    if (!(str[i] == '1' || str[i] == '0' || 
-      str[i] == 'C' || str[i] == 'E' || str[i] == 'P'))
-      return (error_message(1));
-    i++;
+    y = 0;
+    while (y < (*map_info)->win_width)
+    {
+      if ((*map_info)->map[x][y] == 'P')
+        (*map_info)->player++;
+      if ((*map_info)->map[x][y] == 'C')
+        (*map_info)->collectables++;
+      if ((*map_info)->map[x][y] == 'E')
+        (*map_info)->exit++;
+      y++;
+    }
+    x++;
+  }
+//  printf("%d\n%d\n%d\n", (*map_info)->player, (*map_info)->collectables, (*map_info)->exit);
+  if ((*map_info)->player != 1 || (*map_info)->exit != 1)
+    return (error_message(4));
+  return (true);
+}
+
+/* 
+  EXPLICACIÓN DE LA FUNCIÓN
+  */
+
+static bool borders_check(t_mapgraph **map_info)
+{
+  int total;
+  int len;
+  int x;
+  int y;
+
+  x = 0;
+  y = 0;
+  total = (*map_info)->win_height;
+  len = (*map_info)->win_width;
+  while (y < len)
+  {
+    if ((*map_info)->map[0][y] != '1' || (*map_info)->map[total - 1][y] != '1')
+      return (error_message(3));
+    y++;
+  }
+  while (x < (total - 1))
+  {
+    if ((*map_info)->map[x][0] != '1' 
+      || (*map_info)->map[x][len - 1] != '1')
+      return (error_message(3));
+    x++;
   }
   return (true);
 }
@@ -46,7 +82,7 @@ static bool  check_chars(char *str)
 static bool  file_to_map(t_mapgraph **map_info)
 {
   char  *str;
-  char  *aux;
+  char  *aux; // Quizás en algun punto me de error por variable no inicializada
 
   str = "";
   while (str)
@@ -54,17 +90,17 @@ static bool  file_to_map(t_mapgraph **map_info)
     str = gnl_modified((*map_info)->fd);
     if (str && check_chars(str)) // LIBERAR SI DA ERROR?
     {
-      if ((*map_info)->win_width == 0)
-        (*map_info)->win_width = ft_strlen(str);
-      if ((*map_info)->win_width != 0 && (ft_strlen(str) != (*map_info)->win_width)) //Da este error al terminar la última línea del mapa porque no cuenta el \n, ver cómo solucionar
-        return (error_message(2)); // Una linea que tiene una longitud distinta a las otras == caca. Liberar????
-      aux = ft_strjoin_mod(aux, str);
+      if ((*map_info)->win_width == -1)
+        (*map_info)->win_width = ft_strlen_mod(str);
+      if ((*map_info)->win_width != -1 && (ft_strlen_mod(str) != (*map_info)->win_width))
+        return (error_message(2));
+      aux = ft_strjoin_mod(aux, str); // Junta todas las líneas y quita el '\n' con el split
       free(str);
     }
   }
   free(str);
-  free(aux);
   (*map_info)->map = ft_split(aux, '\n');
+  free(aux);
   return (true);
 }
 
@@ -75,6 +111,21 @@ bool  parse_map(char *argv, t_mapgraph **map_info)
   if (!(*map_info)->fd)
     return (error_message(20));
   if (!file_to_map(map_info))
-    return (error_message(20));
+    return (error_message(20)); // Ver si tendría que liberar si hay errores después (solo hay memoria alojada en la doble matriz y en el struct)
+  count_height(map_info);
+  if (!borders_check(map_info))
+    return (error_message(3));
+  if (!exit_collectables_check(map_info))
+    return (error_message(4));
   return (true);
 }
+
+/*   
+  Checar leaks con la doble matriz
+  int i = 0;
+  while ((*map_info)->map[i])
+  {
+    free((*map_info)->map[i]);
+    i++;
+  }
+  free((*map_info)->map); */
