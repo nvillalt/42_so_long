@@ -100,7 +100,8 @@ static bool file_to_map(t_parsemap **map_info)
   }
   free(str);
   (*map_info)->map = ft_split(aux, '\n');
-  // init_t_graph + split in t_graph->map
+  //
+  //
   free(aux);
   return (true);
 }
