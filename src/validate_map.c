@@ -11,3 +11,8 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+bool  validate_map(t_parsemap **map_info)
+{
+  return (true);
+}

@@ -100,6 +100,7 @@ static bool file_to_map(t_parsemap **map_info)
   }
   free(str);
   (*map_info)->map = ft_split(aux, '\n');
+  // init_t_graph + split in t_graph->map
   free(aux);
   return (true);
 }
@@ -117,6 +118,8 @@ bool parse_map(char *argv, t_parsemap **map_info)
     return (error_message(3));
   if (!exit_collectables_check(map_info))
     return (error_message(4));
+  if (!validate_map(map_info))
+  printf("---> Correct Map\n");
   return (true);
 }
 

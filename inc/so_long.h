@@ -49,15 +49,21 @@ typedef struct s_graph
 	void		*mlx_win;
 } t_graph;
 
+// INIT
+t_parsemap	*init_struct(void);
+t_graph			*init_graph(void);
+t_player		*init_player(void);
 
 // PARSE
 bool 				parse_map(char *argv, t_parsemap **map_info);
+
+// VALIDATE
+bool  validate_map(t_parsemap **map_info);
 
 // UTILS
 bool  			check_chars(char *str);
 bool 				error_message(int n);
 bool				count_height(t_parsemap **map_info);
-t_parsemap	*init_struct(void);
 
 // SUPPORT FUNCTIONS
 char				*gnl_modified(int fd); // + utils de gnl_modified
