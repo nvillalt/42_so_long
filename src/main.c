@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 /*
 https://en.wikipedia.org/wiki/Flood_fill
 
@@ -37,7 +36,7 @@ El mapa debe tener una salida, al menos un objeto y una posición inicial.
 
 int main(int argc, char **argv)
 {
-	t_mapgraph *map_info;
+	t_parsemap *map_info;
 
 	map_info = NULL;
 	if (argc != 2 || ft_strncmpend(argv[1], ".ber", 4) == false)
@@ -45,11 +44,11 @@ int main(int argc, char **argv)
 			write(1, "Wrong extension or arg amount.\n", 31);
 			return (1);
 	}
-	map_info = init_struct(); // Inicializado aquí pero algunas asignaciones de memoria se harán en otros puntos, cuidado con eso (creo que se liberará cuando libere la lista, pero cuidado con la doble matriz)
+	map_info = init_struct(); // Inicializado aquí pero algunas asignaciones de memoria se harán en otros puntos, cuidado con eso (cuidado con la doble matriz)
 	parse_map(argv[1], &map_info);
 	//	init_graphics(&map);
-	free(map_info);
-	system("leaks -q so_long");
+	//free(map_info);
+	//system("leaks -q so_long");
 	return (0);
 }
 

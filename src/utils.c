@@ -34,7 +34,7 @@ bool  check_chars(char *str)
   return (true);
 }
 
-bool	count_height(t_mapgraph **map_info)
+bool	count_height(t_parsemap **map_info)
 {
 	int	count;
 
@@ -66,28 +66,7 @@ bool	error_message(int n)
 	return (EXIT_FAILURE);
 }
 
-t_mapgraph	*init_struct(void)
-{
-	t_mapgraph	*map_info;
-	
-	map_info = malloc(sizeof(t_mapgraph));
-	if (!map_info)
-		error_message(20);
-//  map_info->mlx = mlx_init(); //map_info->mlx = mlx_init();
-	map_info->mlx_win = NULL;
-	map_info->win_width = -1;
-	map_info->win_height = -1;
-	map_info->fd = 0;
-	map_info->map = NULL;
-	map_info->player = 0;
-	map_info->collectables = 0;
-	map_info->exit = 0;
-	map_info->movements = -1;
-
-	return(map_info);
-}
-
-/* void	print_list(t_mapgraph *map_info)
+/* void	print_list(t_parsemap *map_info)
 {
 	int		i;
 	int		len;

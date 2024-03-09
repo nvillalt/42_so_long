@@ -37,7 +37,7 @@ MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 INC = so_long.h
 
 #···SRCS········#
-SRC = main.c parse.c utils.c support_functions.c
+SRC = main.c parse.c utils.c support_functions.c init.c 
 OBJ_NAME = $(SRC:%.c=%.o)
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 

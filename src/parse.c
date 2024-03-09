@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static bool exit_collectables_check(t_mapgraph **map_info)
+static bool exit_collectables_check(t_parsemap **map_info)
 {
   int x;
   int y;
@@ -33,17 +33,17 @@ static bool exit_collectables_check(t_mapgraph **map_info)
     }
     x++;
   }
-//  printf("%d\n%d\n%d\n", (*map_info)->player, (*map_info)->collectables, (*map_info)->exit);
+  //  printf("%d\n%d\n%d\n", (*map_info)->player, (*map_info)->collectables, (*map_info)->exit);
   if ((*map_info)->player != 1 || (*map_info)->exit != 1)
     return (error_message(4));
   return (true);
 }
 
-/* 
+/*
   EXPLICACIÓN DE LA FUNCIÓN
   */
 
-static bool borders_check(t_mapgraph **map_info)
+static bool borders_check(t_parsemap **map_info)
 {
   int total;
   int len;
@@ -62,29 +62,29 @@ static bool borders_check(t_mapgraph **map_info)
   }
   while (x < (total - 1))
   {
-    if ((*map_info)->map[x][0] != '1' 
-      || (*map_info)->map[x][len - 1] != '1')
+    if ((*map_info)->map[x][0] != '1' || (*map_info)->map[x][len - 1] != '1')
       return (error_message(3));
     x++;
   }
   return (true);
 }
 
-  // Check str y ver que solo contenga los caracteres permitidos
-  // Si da error > liberar str / liberar la lista, print error y exit
-  // Si no da error, new node + addlistback.
-  // Guardarlo en una lista de nodos y luego la lista de nodos meterla en la doble matriz una vez lo tenga
+// Check str y ver que solo contenga los caracteres permitidos
+// Si da error > liberar str / liberar la lista, print error y exit
+// Si no da error, new node + addlistback.
+// Guardarlo en una lista de nodos y luego la lista de nodos meterla en la doble matriz una vez lo tenga
 
 /* file_to_list adds to a node in a linked list the
    string read from the map file after being checked for
    allowed characters. */
 
-static bool  file_to_map(t_mapgraph **map_info)
+static bool file_to_map(t_parsemap **map_info)
 {
-  char  *str;
-  char  *aux; // Quizás en algun punto me de error por variable no inicializada
+  char *str;
+  char *aux; // Quizás en algun punto me de error por variable no inicializada
 
   str = "";
+  aux = NULL;
   while (str)
   {
     str = gnl_modified((*map_info)->fd);
@@ -104,8 +104,8 @@ static bool  file_to_map(t_mapgraph **map_info)
   return (true);
 }
 
-// LIBERAR LA ALOJACIÓN DE MEMORIA DEL MAPA. 
-bool  parse_map(char *argv, t_mapgraph **map_info)
+// LIBERAR LA ALOJACIÓN DE MEMORIA DEL MAPA.
+bool parse_map(char *argv, t_parsemap **map_info)
 {
   (*map_info)->fd = open(argv, O_RDONLY); // Close ???
   if (!(*map_info)->fd)
@@ -120,7 +120,16 @@ bool  parse_map(char *argv, t_mapgraph **map_info)
   return (true);
 }
 
-/*   
+/*
+
+  int i = 0;
+  while ((*map_info)->map[i])
+  {
+    printf("%s", (*map_info)->map[i]);
+    printf("\n");
+    i++;
+  }
+
   Checar leaks con la doble matriz
   int i = 0;
   while ((*map_info)->map[i])

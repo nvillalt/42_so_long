@@ -23,12 +23,9 @@
 // Quizás luego hacer otro struct para ir almacenando todo lo que tiene el player (sumar 1 a los collectables)
 // cuando los tenga, para cuando sea igual al número total de collectables, etc.
 
-typedef	struct s_mapgraph
+typedef	struct s_parsemap
 {
-	void		*mlx;
-	void		*mlx_win;
-	char		**map;
-	char		**mapcpy; // Copia para pintar con el flood_fill
+	char		**map; // Copia del mapa para pintar y validar con el floodfill
 	int			win_width;
 	int			win_height;
 	int			fd;
@@ -36,21 +33,36 @@ typedef	struct s_mapgraph
 	int			exit;
 	int			player;
 	int			movements;
-} t_mapgraph;
+} t_parsemap;
+
+typedef struct s_player
+{
+	int			movements; // Movements made by the player
+	int			collectables; // Collectables picked up
+
+} t_player;
+
+typedef struct s_graph
+{
+	char		**map; // mapa guardado en doble matriz
+	void		*mlx;
+	void		*mlx_win;
+} t_graph;
+
 
 // PARSE
-bool parse_map(char *argv, t_mapgraph **map_info);
+bool 				parse_map(char *argv, t_parsemap **map_info);
 
 // UTILS
-bool 		error_message(int n);
-bool	count_height(t_mapgraph **map_info);
-t_mapgraph	*init_struct(void);
+bool  			check_chars(char *str);
+bool 				error_message(int n);
+bool				count_height(t_parsemap **map_info);
+t_parsemap	*init_struct(void);
 
 // SUPPORT FUNCTIONS
-char	*gnl_modified(int fd); // + utils de gnl_modified
-char	*ft_strjoin_mod(char *saved, char *buffer);
-bool	ft_strncmpend(char *s1, char *s2, int n);
-bool  	check_chars(char *str);
-int		ft_strlen_mod(char *str);
+char				*gnl_modified(int fd); // + utils de gnl_modified
+char				*ft_strjoin_mod(char *saved, char *buffer);
+bool				ft_strncmpend(char *s1, char *s2, int n);
+int					ft_strlen_mod(char *str);
 
 #endif
