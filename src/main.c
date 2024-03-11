@@ -36,7 +36,8 @@ El mapa debe tener una salida, al menos un objeto y una posición inicial.
 
 int main(int argc, char **argv)
 {
-	t_parsemap *map_info;
+	t_parsemap	*map_info;
+	t_graph			*map_graphs;
 
 	map_info = NULL;
 	if (argc != 2 || ft_strncmpend(argv[1], ".ber", 4) == false)
@@ -45,7 +46,8 @@ int main(int argc, char **argv)
 			return (1);
 	}
 	map_info = init_struct(); // Inicializado aquí pero algunas asignaciones de memoria se harán en otros puntos, cuidado con eso (cuidado con la doble matriz)
-	parse_map(argv[1], &map_info);
+	map_graphs = init_graph(); // Inicializado aquí pero asignada la memoria de la matriz dentro de parse.c
+	parse_map(argv[1], &map_info, &map_graphs);
 	//	init_graphics(&map);
 	//free(map_info);
 	//system("leaks -q so_long");

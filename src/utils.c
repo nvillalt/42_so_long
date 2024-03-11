@@ -46,7 +46,7 @@ bool	count_height(t_parsemap **map_info)
 	}
 	(*map_info)->win_height = count;
 	if (count < 4)
-		return (error_message(3));
+		return (error_message(3)); // Liberar las matrices de map_info y map_graphs antes de salir.
 	return (true);
 }
 

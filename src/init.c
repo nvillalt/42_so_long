@@ -12,14 +12,13 @@ t_parsemap	*init_struct(void)
 	map_info->win_height = -1;
 	map_info->fd = 0;
 	map_info->map = NULL;
-	map_info->player = 0;
+	map_info->player_num = 0;
 	map_info->collectables = 0;
-	map_info->exit = 0;
-	map_info->movements = -1;
+	map_info->exit_num = 0;
 	return(map_info);
 }
 
-t_graph			*init_graph(t_parsemap **map_info)
+t_graph			*init_graph(void)
 {
 	t_graph	*mlx_map;
 
@@ -29,6 +28,7 @@ t_graph			*init_graph(t_parsemap **map_info)
 	mlx_map->map = NULL;
 	//mlx = mlx_init();
 	//mlx_win = mlx_new_window(mlx, (*map_info)->win_width, (*map_info)->win_height, "so_long")
+	//mlx_map->movements = 0;
 	return (mlx_map);
 }
 

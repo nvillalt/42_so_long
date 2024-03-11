@@ -24,17 +24,17 @@ static bool exit_collectables_check(t_parsemap **map_info)
     while (y < (*map_info)->win_width)
     {
       if ((*map_info)->map[x][y] == 'P')
-        (*map_info)->player++;
+        (*map_info)->player_num++;
       if ((*map_info)->map[x][y] == 'C')
         (*map_info)->collectables++;
       if ((*map_info)->map[x][y] == 'E')
-        (*map_info)->exit++;
+        (*map_info)->exit_num++;
       y++;
     }
     x++;
   }
-  //  printf("%d\n%d\n%d\n", (*map_info)->player, (*map_info)->collectables, (*map_info)->exit);
-  if ((*map_info)->player != 1 || (*map_info)->exit != 1)
+  // Si hay error, liberar las matrices de map_graph y map_info
+  if ((*map_info)->player_num != 1 || (*map_info)->exit_num != 1)
     return (error_message(4));
   return (true);
 }
@@ -78,7 +78,7 @@ static bool borders_check(t_parsemap **map_info)
    string read from the map file after being checked for
    allowed characters. */
 
-static bool file_to_map(t_parsemap **map_info)
+static bool file_to_map(t_parsemap **map_info, t_graph **map_graphs)
 {
   char *str;
   char *aux; // Quizás en algun punto me de error por variable no inicializada
@@ -100,19 +100,19 @@ static bool file_to_map(t_parsemap **map_info)
   }
   free(str);
   (*map_info)->map = ft_split(aux, '\n');
-  //
+  (*map_graphs)->map = ft_split(aux, '\n');
   //
   free(aux);
   return (true);
 }
 
 // LIBERAR LA ALOJACIÓN DE MEMORIA DEL MAPA.
-bool parse_map(char *argv, t_parsemap **map_info)
+bool parse_map(char *argv, t_parsemap **map_info, t_graph **map_graphs)
 {
   (*map_info)->fd = open(argv, O_RDONLY); // Close ???
   if (!(*map_info)->fd)
-    return (error_message(20));
-  if (!file_to_map(map_info))
+    return (error_message(20)); // Maybe I can remove the.. returns.
+  if (!file_to_map(map_info, map_graphs))
     return (error_message(20)); // Ver si tendría que liberar si hay errores después (solo hay memoria alojada en la doble matriz y en el struct)
   count_height(map_info);
   if (!borders_check(map_info))
@@ -120,6 +120,7 @@ bool parse_map(char *argv, t_parsemap **map_info)
   if (!exit_collectables_check(map_info))
     return (error_message(4));
   if (!validate_map(map_info))
+    return (error_message(20));
   printf("---> Correct Map\n");
   return (true);
 }

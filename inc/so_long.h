@@ -23,39 +23,47 @@
 // Quizás luego hacer otro struct para ir almacenando todo lo que tiene el player (sumar 1 a los collectables)
 // cuando los tenga, para cuando sea igual al número total de collectables, etc.
 
-typedef	struct s_parsemap
-{
-	char		**map; // Copia del mapa para pintar y validar con el floodfill
-	int			win_width;
-	int			win_height;
-	int			fd;
-	int			collectables;
-	int			exit;
-	int			player;
-	int			movements;
-} t_parsemap;
-
 typedef struct s_player
 {
+	int			x;
+	int			y;
 	int			movements; // Movements made by the player
 	int			collectables; // Collectables picked up
-
 } t_player;
+
+typedef struct s_exit
+{
+	int			x;
+	int			y;
+} t_exit;
+
+typedef	struct s_parsemap
+{
+	char			**map; // Copia del mapa para pintar y validar con el floodfill
+	int				win_width;
+	int				win_height;
+	int				fd;
+	int				collectables;
+	int				exit_num;
+	int				player_num;
+	t_player	player;
+	t_exit		exit;
+} t_parsemap;
 
 typedef struct s_graph
 {
 	char		**map; // mapa guardado en doble matriz
 	void		*mlx;
 	void		*mlx_win;
+	int			movements;
 } t_graph;
 
 // INIT
 t_parsemap	*init_struct(void);
 t_graph			*init_graph(void);
-t_player		*init_player(void);
 
 // PARSE
-bool 				parse_map(char *argv, t_parsemap **map_info);
+bool 				parse_map(char *argv, t_parsemap **map_info, t_graph **map_graphs);
 
 // VALIDATE
 bool  validate_map(t_parsemap **map_info);
