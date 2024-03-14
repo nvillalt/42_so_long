@@ -44,6 +44,8 @@ typedef	struct s_parsemap
 	int				win_height;
 	int				fd;
 	int				collectables;
+	int				collectables_check;
+	int				exit_check;
 	int				exit_num;
 	int				player_num;
 	t_player	player;

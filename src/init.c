@@ -12,9 +12,11 @@ t_parsemap	*init_struct(void)
 	map_info->win_height = -1;
 	map_info->fd = 0;
 	map_info->map = NULL;
-	map_info->player_num = 0;
 	map_info->collectables = 0;
+	map_info->collectables_check = 0;
 	map_info->exit_num = 0;
+	map_info->exit_check = 0;
+	map_info->player_num = 0;
 	return(map_info);
 }
 

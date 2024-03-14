@@ -45,7 +45,7 @@ bool	count_height(t_parsemap **map_info)
 			count++;
 	}
 	(*map_info)->win_height = count;
-	if (count < 4)
+	if (count < 3)
 		return (error_message(3)); // Liberar las matrices de map_info y map_graphs antes de salir.
 	return (true);
 }
@@ -53,13 +53,15 @@ bool	count_height(t_parsemap **map_info)
 bool	error_message(int n)
 {
 	if (n == 1)
-		write(1, "Wrong characters.", 17);
+		write(1, "Wrong characters.\n", 18);
 	if (n == 2)
-		write(1, "Inconsistent width.", 19); // Da este error al terminar la última línea del mapa porque no cuenta el \n, ver cómo solucionar
+		write(1, "Inconsistent width.\n", 20); // Da este error al terminar la última línea del mapa porque no cuenta el \n, ver cómo solucionar
 	if (n == 3)
-		write(1, "Wrong walls in map.", 19);
+		write(1, "Wrong walls in map.\n", 20);
 	if (n == 4)
-		write(1, "Wrong number of exit or players.", 32);
+		write(1, "Wrong number of exit or players.\n", 33);
+	if (n == 5)
+		write(1, "Unsolvable map.\n", 16);
 	else if (n == 20)
 		perror("so_long error");
 	exit(EXIT_FAILURE);

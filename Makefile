@@ -29,7 +29,7 @@ INC_PATH = inc/
 
 #····CC + FLAGS ···#
 CC = cc
-CFLAGS = -Wall -Wextra #-Werror -g3
+CFLAGS = -Wall -Wextra -g3 #-Werror -g3
 CFLAGS += -I $(INC_PATH) -I $(LIBFT_DIR) -I $(SRC_PATH) 
 MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
