@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/14 19:36:32 by nvillalt          #+#    #+#             */
+/*   Updated: 2024/03/14 19:52:54 by nvillalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include  "so_long.h"
+#include "so_long.h"
 
 t_parsemap	*init_struct(void)
 {
@@ -8,8 +19,8 @@ t_parsemap	*init_struct(void)
 	map_info = malloc(sizeof(t_parsemap));
 	if (!map_info)
 		error_message(20);
-	map_info->win_width = -1;
-	map_info->win_height = -1;
+	map_info->win_x = -1;
+	map_info->win_y = -1;
 	map_info->fd = 0;
 	map_info->map = NULL;
 	map_info->collectables = 0;
@@ -17,10 +28,10 @@ t_parsemap	*init_struct(void)
 	map_info->exit_num = 0;
 	map_info->exit_check = 0;
 	map_info->player_num = 0;
-	return(map_info);
+	return (map_info);
 }
 
-t_graph			*init_graph(void)
+t_graph	*init_graph(void)
 {
 	t_graph	*mlx_map;
 
@@ -28,13 +39,13 @@ t_graph			*init_graph(void)
 	if (!mlx_map)
 		return (NULL);
 	mlx_map->map = NULL;
-	//mlx = mlx_init();
-	//mlx_win = mlx_new_window(mlx, (*map_info)->win_width, (*map_info)->win_height, "so_long")
-	//mlx_map->movements = 0;
+	mlx_map->mlx = NULL;
+	mlx_map->win = NULL;
+	mlx_map->movements = 0;
 	return (mlx_map);
 }
 
-t_player		*init_player(void)
+t_player	*init_player(void)
 {
 	t_player	*player;
 

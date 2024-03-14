@@ -6,7 +6,7 @@
 #    By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 20:05:20 by nvillalt          #+#    #+#              #
-#    Updated: 2024/03/08 16:02:49 by nvillalt         ###   ########.fr        #
+#    Updated: 2024/03/14 19:42:37 by nvillalt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 INC = so_long.h
 
 #···SRCS········#
-SRC = main.c parse.c utils.c support_functions.c init.c validate_map.c
+SRC = main.c parse.c utils.c support_functions.c init.c validate_map.c graphs_init.c
 OBJ_NAME = $(SRC:%.c=%.o)
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 
@@ -59,7 +59,7 @@ all: $(NAME)
 # $(MLX_FLAGS)  > AÑADIRLAS A $(NAME) RULE
 $(NAME): $(OBJ)
 	make -sC $(LIBFT_DIR)
-	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS) $(LDLIBS)
+	$(CC) $^ -o $@ $(CFLAGS) $(MLX_FLAGS) $(LDFLAGS) $(LDLIBS)
 	@echo "\033[2K\r${PUR}[COMPILING LIBFT]${RST}'$<'\n"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC_PATH)/$(INC)

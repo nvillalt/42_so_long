@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/08 19:23:13 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:51:29 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static bool exit_collectables_check(t_parsemap **map_info)
   int y;
 
   x = 0;
-  while (x < (*map_info)->win_height)
+  while (x < (*map_info)->win_y)
   {
     y = 0;
-    while (y < (*map_info)->win_width)
+    while (y < (*map_info)->win_x)
     {
       if ((*map_info)->map[x][y] == 'P')
         (*map_info)->player_num++;
@@ -52,8 +52,8 @@ static bool borders_check(t_parsemap **map_info)
 
   x = 0;
   y = 0;
-  total = (*map_info)->win_height;
-  len = (*map_info)->win_width;
+  total = (*map_info)->win_y;
+  len = (*map_info)->win_x;
   while (y < len)
   {
     if ((*map_info)->map[0][y] != '1' || (*map_info)->map[total - 1][y] != '1')
@@ -90,9 +90,9 @@ static bool file_to_map(t_parsemap **map_info, t_graph **map_graphs)
     str = gnl_modified((*map_info)->fd);
     if (str && check_chars(str)) // LIBERAR SI DA ERROR?
     {
-      if ((*map_info)->win_width == -1)
-        (*map_info)->win_width = ft_strlen_mod(str);
-      if ((*map_info)->win_width != -1 && (ft_strlen_mod(str) != (*map_info)->win_width))
+      if ((*map_info)->win_x == -1)
+        (*map_info)->win_x = ft_strlen_mod(str);
+      if ((*map_info)->win_x != -1 && (ft_strlen_mod(str) != (*map_info)->win_x))
         return (error_message(2));
       aux = ft_strjoin_mod(aux, str); // Junta todas las líneas y quita el '\n' con el split
       free(str);
@@ -121,7 +121,6 @@ bool parse_map(char *argv, t_parsemap **map_info, t_graph **map_graphs)
     return (error_message(4));
   if (!validate_map(map_info))
     return (error_message(20));
-  printf("---> Correct Map\n");
   return (true);
 }
 

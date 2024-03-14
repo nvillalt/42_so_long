@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:23:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/08 19:20:22 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:51:29 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@
    by gnl. If a not allowed character is present, the function
    exits.*/
 
-bool  check_chars(char *str)
+bool	check_chars(char *str)
 {
-  int i;
-  int len;
-  
-  i = 0;
-  len = ft_strlen_mod(str);
-  while (i < len) // len - 1 para poder saltar el \n
-  {
-    if (!(str[i] == '1' || str[i] == '0' || 
-      str[i] == 'C' || str[i] == 'E' || str[i] == 'P'))
-      return (error_message(1));
-    i++;
-  }
-  return (true);
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_strlen_mod(str);
+	while (i < len)
+	{
+		if (!(str[i] == '1' || str[i] == '0' || str[i] == 'C'
+				|| str[i] == 'E' || str[i] == 'P'))
+			return (error_message(1));
+		i++;
+	}
+	return (true);
 }
 
 bool	count_height(t_parsemap **map_info)
@@ -39,14 +39,15 @@ bool	count_height(t_parsemap **map_info)
 	int	count;
 
 	count = 0;
-	if ((*map_info)->win_height == -1)
+	if ((*map_info)->win_y == -1)
 	{
 		while ((*map_info)->map[count])
 			count++;
 	}
-	(*map_info)->win_height = count;
+	(*map_info)->win_y = count;
 	if (count < 3)
-		return (error_message(3)); // Liberar las matrices de map_info y map_graphs antes de salir.
+		return (error_message(3));
+	// Liberar las matrices de map_info y map_graphs antes de salir.
 	return (true);
 }
 
@@ -55,7 +56,7 @@ bool	error_message(int n)
 	if (n == 1)
 		write(1, "Wrong characters.\n", 18);
 	if (n == 2)
-		write(1, "Inconsistent width.\n", 20); // Da este error al terminar la última línea del mapa porque no cuenta el \n, ver cómo solucionar
+		write(1, "Inconsistent width.\n", 20);
 	if (n == 3)
 		write(1, "Wrong walls in map.\n", 20);
 	if (n == 4)

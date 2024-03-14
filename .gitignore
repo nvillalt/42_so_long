@@ -2,4 +2,3 @@
 obj/*.o
 *.o
 .vscode/*
-./maps/

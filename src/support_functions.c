@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:02:06 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/08 18:03:06 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:34:50 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ bool	ft_strncmpend(char *s1, char *s2, int n)
 			return (false);
 		len--;
 	}
-	return(true);
+	return (true);
 }
 
-char	*ft_strjoin_mod(char *saved, char *buffer)
+char	*ft_strjoin_mod(char *s, char *b)
 {
 	char	*join;
 	int		i;
@@ -47,62 +47,62 @@ char	*ft_strjoin_mod(char *saved, char *buffer)
 
 	i = 0;
 	j = 0;
-	join = ft_calloc_gnl(sizeof(char), ft_strlen_gnl(saved) + ft_strlen_gnl(buffer) + 1);
+	join = ft_calloc_gnl(sizeof(char), ft_strlen_gnl(s) + ft_strlen_gnl(b) + 1);
 	if (!join)
 	{
-		free(saved); 
+		free(s);
 		return (NULL);
 	}
-	while (saved && saved[i] != '\0')
+	while (s && s[i] != '\0')
 	{
-		join[i] = saved[i];
+		join[i] = s[i];
 		i++;
 	}
-	while (buffer[j] != '\0')
+	while (b[j] != '\0')
 	{
-		join[i] = buffer[j];
+		join[i] = b[j];
 		i++;
 		j++;
 	}
-	free(saved);
+	free(s);
 	return (join);
 }
 
 static char	*read_line(int fd, char *line)
 {
-	char	*buffer;
+	char	*b;
 	int		rchar;
 
 	rchar = 1;
-	buffer = ft_calloc(sizeof(char), (1 + 1));
-	if (!buffer)
+	b = ft_calloc(sizeof(char), (1 + 1));
+	if (!b)
 		return (NULL);
-	while (rchar > 0 && !ft_strchr(buffer, '\n'))
+	while (rchar > 0 && !ft_strchr(b, '\n'))
 	{
-		rchar = read(fd, buffer, 1);
+		rchar = read(fd, b, 1);
 		if (rchar == -1)
 		{
-			free(buffer);
+			free(b);
 			return (NULL);
 		}
 		if (rchar > 0)
 		{
-			buffer[rchar] = '\0';
-			line = ft_strjoin_gnl(line, buffer);
+			b[rchar] = '\0';
+			line = ft_strjoin_gnl(line, b);
 		}
 	}
-	free(buffer);
+	free(b);
 	return (line);
 }
 
 char	*gnl_modified(int fd)
 {
-	char	*saved;
+	char	*s;
 	char	*line;
 
 	line = NULL;
 	if (fd < 0)
 		return (NULL);
-	saved = read_line(fd, line);
-	return (saved);
+	s = read_line(fd, line);
+	return (s);
 }
