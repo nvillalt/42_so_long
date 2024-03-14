@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:36:32 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/14 19:52:54 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/14 20:52:16 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_graph	*init_graph(void)
 	mlx_map->mlx = NULL;
 	mlx_map->win = NULL;
 	mlx_map->movements = 0;
+	//mlx_map->sprites = NULL;
 	return (mlx_map);
 }
 

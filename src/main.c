@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/14 20:23:00 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/14 20:44:23 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 	map_info = init_struct(); // Inicializado aquí pero algunas asignaciones de memoria se harán en otros puntos, cuidado con eso (cuidado con la doble matriz)
 	map_graphs = init_graph(); // Inicializado aquí pero asignada la memoria de la matriz dentro de parse.c
 	parse_map(argv[1], &map_info, &map_graphs);
-	init_graphs(&map_info, &map_graphs);
+	init_window(&map_info, &map_graphs);
 	//	init_graphics(&map);
 	//free(map_info);
 	//system("leaks -q so_long");
