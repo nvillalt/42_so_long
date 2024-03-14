@@ -28,18 +28,18 @@ if (one_of_the_four_adjacent_directions_is_possible)
 return map_invalid;
 */
 
-void	flood_fill(t_parsemap **map_info, int x, int y)
+void	flood_fill(char **map, int x, int y)
 {
 	int	wall;
 
-	wall = 1;
-	if ((*map_info)->map[x][y] == wall || (*map_info)->map[x][y] == 'A')
+	wall = '1';
+	if (map[x][y] == wall || map[x][y] == 'A' || map[x][y] == 'E')
 		return ;
-	(*map_info)->map[x][y] = 'A';
-	flood_fill(map_info, x, (y + 1));
-	flood_fill(map_info, x, (y - 1));
-	flood_fill(map_info, (x + 1), y);
-	flood_fill(map_info, (x - 1), y);
+	map[x][y] = 'A';
+	flood_fill(map, x, (y + 1));
+	flood_fill(map, x, (y - 1));
+	flood_fill(map, (x + 1), y);
+	flood_fill(map, (x - 1), y);
 }
 
 static bool  check_exit_player(t_parsemap **map_info)
@@ -72,13 +72,16 @@ static bool  check_exit_player(t_parsemap **map_info)
 
 bool	validate_map(t_parsemap **map_info)
 {
-	check_exit_player(map_info);
-	flood_fill(map_info, (*map_info)->player.x, (*map_info)->player.y);
 	int	i = 0;
+	int	j;
+
+	i = 0;
+	check_exit_player(map_info);
+	printf("Coordenadas player: %d - %d\nCoordenadas exit: %d - %d\n-------\n", (*map_info)->player.x, (*map_info)->player.y, (*map_info)->exit.x, (*map_info)->exit.y);
+	flood_fill((*map_info)->map, (*map_info)->player.x, (*map_info)->player.y);
 	while ((*map_info)->map[i])
 	{
-		printf("%s\n", (*map_info)->map[i]);
+		printf("---> %s\n", (*map_info)->map[i]);
 		i++;
 	}
-	return (true);
 }
