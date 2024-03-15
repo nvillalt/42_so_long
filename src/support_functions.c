@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:02:06 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/14 19:34:50 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:49:18 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strlen_mod(char *str)
 	return (count);
 }
 
-bool	ft_strncmpend(char *s1, char *s2, int n)
+int	ft_strncmpend(char *s1, char *s2, int n)
 {
 	int	len;
 
@@ -33,10 +33,10 @@ bool	ft_strncmpend(char *s1, char *s2, int n)
 	{
 		--n;
 		if (s1[len] != s2[n])
-			return (false);
+			return (0);
 		len--;
 	}
-	return (true);
+	return (1);
 }
 
 char	*ft_strjoin_mod(char *s, char *b)

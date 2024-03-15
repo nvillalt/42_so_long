@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:23:03 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/14 19:18:28 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:09:54 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	flood_fill(t_parsemap **map_info, int x, int y)
 	flood_fill(map_info, (x - 1), y);
 }
 
-static bool	check_exit_player(t_parsemap **map_info)
+static int	check_exit_player(t_parsemap **map_info)
 {
 	int	x;
 	int	y;
@@ -74,10 +74,10 @@ static bool	check_exit_player(t_parsemap **map_info)
 		}
 		x++;
 	}
-	return (true);
+	return (1);
 }
 
-bool	validate_map(t_parsemap **map_info)
+int	validate_map(t_parsemap **map_info)
 {
 	check_exit_player(map_info);
 	flood_fill(map_info, (*map_info)->player.x, (*map_info)->player.y);
@@ -85,5 +85,5 @@ bool	validate_map(t_parsemap **map_info)
 		return (error_message(5));
 	if ((*map_info)->exit_num != (*map_info)->exit_check)
 		return (error_message(5));
-	return (true);
+	return (1);
 }

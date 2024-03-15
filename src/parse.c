@@ -6,13 +6,13 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/14 19:51:29 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:55:50 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static bool exit_collectables_check(t_parsemap **map_info)
+static int exit_collectables_check(t_parsemap **map_info)
 {
   int x;
   int y;
@@ -36,14 +36,14 @@ static bool exit_collectables_check(t_parsemap **map_info)
   // Si hay error, liberar las matrices de map_graph y map_info
   if ((*map_info)->player_num != 1 || (*map_info)->exit_num != 1)
     return (error_message(4));
-  return (true);
+  return (1);
 }
 
 /*
   EXPLICACIÓN DE LA FUNCIÓN
   */
 
-static bool borders_check(t_parsemap **map_info)
+static int borders_check(t_parsemap **map_info)
 {
   int total;
   int len;
@@ -66,7 +66,7 @@ static bool borders_check(t_parsemap **map_info)
       return (error_message(3));
     x++;
   }
-  return (true);
+  return (1);
 }
 
 // Check str y ver que solo contenga los caracteres permitidos
@@ -78,7 +78,7 @@ static bool borders_check(t_parsemap **map_info)
    string read from the map file after being checked for
    allowed characters. */
 
-static bool file_to_map(t_parsemap **map_info, t_graph **map_graphs)
+static int file_to_map(t_parsemap **map_info, t_graph **map_graphs)
 {
   char *str;
   char *aux; // Quizás en algun punto me de error por variable no inicializada
@@ -101,13 +101,20 @@ static bool file_to_map(t_parsemap **map_info, t_graph **map_graphs)
   free(str);
   (*map_info)->map = ft_split(aux, '\n');
   (*map_graphs)->map = ft_split(aux, '\n');
+  
+  int i = 0;
+  while((*map_graphs)->map[i])
+  {
+    printf("%s\n", (*map_graphs)->map[i]);
+    i++;
+  }
   //
   free(aux);
-  return (true);
+  return (1);
 }
 
 // LIBERAR LA ALOJACIÓN DE MEMORIA DEL MAPA.
-bool parse_map(char *argv, t_parsemap **map_info, t_graph **map_graphs)
+int parse_map(char *argv, t_parsemap **map_info, t_graph **map_graphs)
 {
   (*map_info)->fd = open(argv, O_RDONLY); // Close ???
   if (!(*map_info)->fd)
@@ -121,7 +128,7 @@ bool parse_map(char *argv, t_parsemap **map_info, t_graph **map_graphs)
     return (error_message(4));
   if (!validate_map(map_info))
     return (error_message(20));
-  return (true);
+  return (1);
 }
 
 /*

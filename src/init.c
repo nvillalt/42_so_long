@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:36:32 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/14 20:52:16 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:39:52 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ t_graph	*init_graph(void)
 	mlx_map->mlx = NULL;
 	mlx_map->win = NULL;
 	mlx_map->movements = 0;
-	//mlx_map->sprites = NULL;
 	return (mlx_map);
 }
 
@@ -53,6 +52,8 @@ t_player	*init_player(void)
 	player = malloc(sizeof(t_player));
 	if (!player)
 		return (NULL);
+	player->x = 0;
+	player->y = 0;
 	player->movements = 0;
 	player->collectables = 0;
 	return (player);

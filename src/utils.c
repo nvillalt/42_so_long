@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:23:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/14 19:51:29 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:09:54 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
    by gnl. If a not allowed character is present, the function
    exits.*/
 
-bool	check_chars(char *str)
+int	check_chars(char *str)
 {
 	int	i;
 	int	len;
@@ -31,10 +31,10 @@ bool	check_chars(char *str)
 			return (error_message(1));
 		i++;
 	}
-	return (true);
+	return (1);
 }
 
-bool	count_height(t_parsemap **map_info)
+int	count_height(t_parsemap **map_info)
 {
 	int	count;
 
@@ -48,10 +48,10 @@ bool	count_height(t_parsemap **map_info)
 	if (count < 3)
 		return (error_message(3));
 	// Liberar las matrices de map_info y map_graphs antes de salir.
-	return (true);
+	return (1);
 }
 
-bool	error_message(int n)
+int	error_message(int n)
 {
 	if (n == 1)
 		write(1, "Wrong characters.\n", 18);
