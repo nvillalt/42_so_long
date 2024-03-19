@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:18 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/15 19:54:56 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:15:08 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@
 # define PXL 64
 
 /* ···· sprites route ···· */
-# define PATH "/assets/path.xpm"
-# define GRASS "/assets/Grass.xpm"
-# define APPLE "/assets/collectable.xpm"
-# define ROCK "/assets/rock.xpm"
-# define MASK "/assets/mask.xpm"
-# define CRASHFRONT "/assets/crash_front.xpm"
-# define CRASHBACK "/assets/crash_back.xpm"
-# define CRASHRIGHT "/assets/crash_right.xpm"
-# define CRASHLEFT "/assets/crash_left.xpm"
+# define PATH "assets/path.xpm"
+# define GRASS "assets/Grass.xpm"
+# define APPLE "assets/collectable.xpm"
+# define ROCK "assets/rock.xpm"
+# define MASK "assets/mask.xpm"
+# define CRASHFRONT "assets/crash_front.xpm"
+# define CRASHBACK "assets/crash_back.xpm"
+# define CRASHRIGHT "assets/crash_right.xpm"
+# define CRASHLEFT "assets/crash_left.xpm"
 
 
 // Quizás luego hacer otro struct para ir almacenando todo lo que tiene el player (sumar 1 a los collectables)
@@ -99,7 +99,7 @@ t_graph			*init_graph(void);
 int 			parse_map(char *argv, t_parsemap **map_info, t_graph **map_graphs);
 
 // GRAPHICS
-void			start_game(t_parsemap **map_info, t_graph **mlx);
+void			start_game(t_parsemap *map, t_graph *mlx);
 
 // VALIDATE
 int  			validate_map(t_parsemap **map_info);
@@ -107,12 +107,12 @@ int  			validate_map(t_parsemap **map_info);
 // UTILS
 int  			check_chars(char *str);
 int 			error_message(int n);
-int			count_height(t_parsemap **map_info);
+int				count_height(t_parsemap **map_info);
 
 // SUPPORT FUNCTIONS
 char			*gnl_modified(int fd); // + utils de gnl_modified
 char			*ft_strjoin_mod(char *saved, char *buffer);
-int			ft_strncmpend(char *s1, char *s2, int n);
+int				ft_strncmpend(char *s1, char *s2, int n);
 int				ft_strlen_mod(char *str);
 
 #endif

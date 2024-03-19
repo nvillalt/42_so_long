@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/15 19:55:26 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:13:33 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ int	main(int argc, char **argv)
 		printf(map_graphs->map[i]);
 		printf("\n");
 	}*/
-	start_game(&map_info, &map_graphs); 
-	//init_graphics(&map);
+	start_game(map_info, map_graphs); 
 	//free(map_info);
 	//system("leaks -q so_long");
 	return (0);
