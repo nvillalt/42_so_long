@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/19 13:13:33 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:10:05 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 	}*/
 	start_game(map_info, map_graphs); 
 	//free(map_info);
-	//system("leaks -q so_long");
+	system("leaks -q so_long");
 	return (0);
 }
 

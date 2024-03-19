@@ -6,7 +6,7 @@
 #    By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 20:05:20 by nvillalt          #+#    #+#              #
-#    Updated: 2024/03/14 19:42:37 by nvillalt         ###   ########.fr        #
+#    Updated: 2024/03/19 18:53:07 by nvillalt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 INC = so_long.h
 
 #···SRCS········#
-SRC = main.c parse.c utils.c support_functions.c init.c validate_map.c graphs_init.c
+SRC = main.c parse.c utils.c support_functions.c init.c validate_map.c graphs_init.c map_hooks.c
 OBJ_NAME = $(SRC:%.c=%.o)
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 

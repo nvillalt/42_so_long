@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:18 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/19 13:15:08 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/19 20:09:17 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <mlx.h>
 
 /* ···· size ···· */
-# define PXL 64
+# define PXL 50
 
 /* ···· sprites route ···· */
 # define PATH "assets/path.xpm"
@@ -35,6 +35,17 @@
 # define CRASHRIGHT "assets/crash_right.xpm"
 # define CRASHLEFT "assets/crash_left.xpm"
 
+/* ····· keybinds ····· */
+# define ESC 53
+# define KEY_Q 12
+# define KEY_W 13
+# define KEY_A 0 
+# define KEY_D 2
+# define KEY_S 1
+# define KEY_UP 126
+# define KEY_RIGHT 124
+# define KEY_LEFT 125
+# define KEY_DOWN 123
 
 // Quizás luego hacer otro struct para ir almacenando todo lo que tiene el player (sumar 1 a los collectables)
 // cuando los tenga, para cuando sea igual al número total de collectables, etc.
@@ -75,8 +86,6 @@ typedef	struct s_parsemap
 	int			win_y;
 	int			fd;
 	int			collectables;
-	int			collectables_check;
-	int			exit_check;
 	int			exit_num;
 	int			player_num;
 	t_player	player;
@@ -89,6 +98,8 @@ typedef struct s_graph
 	void		*mlx;
 	void		*win;
 	int			movements;
+	int			collectables_check;
+	int			exit_check;
 } t_graph;
 
 // INIT
@@ -98,8 +109,10 @@ t_graph			*init_graph(void);
 // PARSE
 int 			parse_map(char *argv, t_parsemap **map_info, t_graph **map_graphs);
 
-// GRAPHICS
+// GRAPHICS & KEYBINDS
 void			start_game(t_parsemap *map, t_graph *mlx);
+void			destroy_display(t_graph *mlx);
+int				key_hook(int key, t_graph *mlx);
 
 // VALIDATE
 int  			validate_map(t_parsemap **map_info);

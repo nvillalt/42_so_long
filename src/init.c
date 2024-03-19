@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:36:32 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/15 19:39:52 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/19 20:09:51 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ t_parsemap	*init_struct(void)
 	map_info->fd = 0;
 	map_info->map = NULL;
 	map_info->collectables = 0;
-	map_info->collectables_check = 0;
 	map_info->exit_num = 0;
-	map_info->exit_check = 0;
 	map_info->player_num = 0;
 	return (map_info);
 }
@@ -42,6 +40,8 @@ t_graph	*init_graph(void)
 	mlx_map->mlx = NULL;
 	mlx_map->win = NULL;
 	mlx_map->movements = 0;
+	mlx_map->exit_check = 0;
+	mlx_map->collectables_check = 0;
 	return (mlx_map);
 }
 
