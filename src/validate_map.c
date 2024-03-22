@@ -6,27 +6,13 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:23:03 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/19 20:02:56 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/22 21:52:24 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 // Algoritmo de flood-fill
-
-/* if (all_collectables_collected && exit_count == 1)
-	return map_valid;
-if (on_wall)
-	return map_invalid;
-if (on_collectable)
-	collectables++;
-if (on_exit)
-	exits++;
-replace_current_position_with_wall;
-if (one_of_the_four_adjacent_directions_is_possible)
-	return map_valid;
-return map_invalid;
-*/
 
 // Algoritmo de flood_fill que además mira que tenga el número de coleccionables y exit == al que ya he guardado
 // Ahora mismo se puede pasar sobre la salida, no es un muro.

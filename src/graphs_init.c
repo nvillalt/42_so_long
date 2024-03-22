@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:40:16 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/22 20:17:22 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/22 22:10:09 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	start_game(t_parsemap *map_info)
 	if (!sprites || !graphs)
 		return ;
 	graphs->parse_info = map_info;
+	graphs->sprites = sprites;
 	graphs->ptr = mlx_init();
 	if (!graphs->ptr) // Liberaciones de memoria y volver
 		return ;
@@ -78,10 +79,8 @@ void	start_game(t_parsemap *map_info)
 	if (!graphs->win)
 		return ;
 	init_image(graphs, sprites);
-	// Destroy hook
 	mlx_key_hook(graphs->win, &key_hook, graphs);
 	//mlx_destroy_display(graphs->ptr);
-	// Keys hook
 	mlx_loop(graphs->ptr);
 }
 

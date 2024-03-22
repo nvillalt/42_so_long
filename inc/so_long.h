@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:18 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/22 20:16:53 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/22 22:15:07 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 # define KEY_S 1
 # define KEY_UP 126
 # define KEY_RIGHT 124
-# define KEY_LEFT 125
-# define KEY_DOWN 123
+# define KEY_LEFT 123
+# define KEY_DOWN 125
 
 // Quizás luego hacer otro struct para ir almacenando todo lo que tiene el player (sumar 1 a los collectables)
 // cuando los tenga, para cuando sea igual al número total de collectables, etc.
@@ -97,6 +97,7 @@ typedef	struct s_parsemap
 
 typedef struct s_graphics
 {
+	t_sprites	*sprites;
 	t_parsemap	*parse_info;
 	// Quizas los sprites
 	void		*ptr;
@@ -112,7 +113,7 @@ int 			parse_map(char *argv, t_parsemap **map_info);
 // GRAPHICS & KEYBINDS
 void			start_game(t_parsemap *map);
 // void			destroy_display(t_graph *mlx);
-int			key_hook(int key, t_graphics *graphs);
+int				key_hook(int key, t_graphics *graphs);
 
 // VALIDATE
 int  			validate_map(t_parsemap **map_info);
