@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:18 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/22 19:45:23 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:16:53 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,13 @@ typedef	struct s_parsemap
 	t_exit		exit;
 } t_parsemap;
 
-typedef struct s_global
+typedef struct s_graphics
 {
-	t_parsemap	*map_info;
+	t_parsemap	*parse_info;
 	// Quizas los sprites
 	void		*ptr;
 	void		*win;
-} t_global;
+} t_graphics;
 
 // INIT
 t_parsemap		*init_struct(void);
@@ -112,7 +112,7 @@ int 			parse_map(char *argv, t_parsemap **map_info);
 // GRAPHICS & KEYBINDS
 void			start_game(t_parsemap *map);
 // void			destroy_display(t_graph *mlx);
-// int				key_hook(int key, t_graph *mlx);
+int			key_hook(int key, t_graphics *graphs);
 
 // VALIDATE
 int  			validate_map(t_parsemap **map_info);

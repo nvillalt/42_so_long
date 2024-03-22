@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/22 19:47:07 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:49:08 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	map_info = init_struct(); // Inicializado aquí pero algunas asignaciones de memoria se harán en otros puntos, cuidado con eso (cuidado con la doble matriz)
-	//map_graphs = init_graph(); // Inicializado aquí pero asignada la memoria de la matriz dentro de parse.c
 	parse_map(argv[1], &map_info);
-	
 	printf("OK\n");
 	int i = 0;
 	while (map_info->clean_map[i])
@@ -56,7 +54,7 @@ int	main(int argc, char **argv)
 		printf("\n");
 		i++;
 	}
-	//start_game(map_info, map_graphs); 
+	start_game(map_info); 
 	//free(map_info);
 	system("leaks -q so_long");
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:36:32 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/22 19:43:19 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:09:33 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_parsemap	*init_struct(void)
 	map_info->collectables_check = 0;
 	return (map_info);
 }
-
 
 t_player	*init_player(void)
 {
