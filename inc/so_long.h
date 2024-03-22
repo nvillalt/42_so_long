@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:18 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/19 20:09:17 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:15:17 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef	struct s_parsemap
 	int			win_y;
 	int			fd;
 	int			collectables;
+	int			collectables_check;
+	int			exit_check;
 	int			exit_num;
 	int			player_num;
 	t_player	player;
@@ -98,8 +100,6 @@ typedef struct s_graph
 	void		*mlx;
 	void		*win;
 	int			movements;
-	int			collectables_check;
-	int			exit_check;
 } t_graph;
 
 // INIT
