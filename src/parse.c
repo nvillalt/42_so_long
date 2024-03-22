@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/15 19:55:50 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:47:53 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int borders_check(t_parsemap **map_info)
    string read from the map file after being checked for
    allowed characters. */
 
-static int file_to_map(t_parsemap **map_info, t_graph **map_graphs)
+static int file_to_map(t_parsemap **map_info)
 {
   char *str;
   char *aux; // Quizás en algun punto me de error por variable no inicializada
@@ -100,26 +100,18 @@ static int file_to_map(t_parsemap **map_info, t_graph **map_graphs)
   }
   free(str);
   (*map_info)->map = ft_split(aux, '\n');
-  (*map_graphs)->map = ft_split(aux, '\n');
-  
-  int i = 0;
-  while((*map_graphs)->map[i])
-  {
-    printf("%s\n", (*map_graphs)->map[i]);
-    i++;
-  }
-  //
+  (*map_info)->clean_map = ft_split(aux, '\n');
   free(aux);
   return (1);
 }
 
 // LIBERAR LA ALOJACIÓN DE MEMORIA DEL MAPA.
-int parse_map(char *argv, t_parsemap **map_info, t_graph **map_graphs)
+int parse_map(char *argv, t_parsemap **map_info)
 {
   (*map_info)->fd = open(argv, O_RDONLY); // Close ???
-  if (!(*map_info)->fd)
+  if ((*map_info)->fd == -1)
     return (error_message(20)); // Maybe I can remove the.. returns.
-  if (!file_to_map(map_info, map_graphs))
+  if (!file_to_map(map_info))
     return (error_message(20)); // Ver si tendría que liberar si hay errores después (solo hay memoria alojada en la doble matriz y en el struct)
   count_height(map_info);
   if (!borders_check(map_info))

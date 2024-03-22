@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:18 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/22 19:15:17 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:45:23 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_exit
 
 typedef	struct s_parsemap
 {
+	char		**clean_map;
 	char		**map; // Copia del mapa para pintar y validar con el floodfill
 	int			win_x;
 	int			win_y;
@@ -94,25 +95,24 @@ typedef	struct s_parsemap
 	t_exit		exit;
 } t_parsemap;
 
-typedef struct s_graph
+typedef struct s_global
 {
-	char		**map; // mapa guardado en doble matriz
-	void		*mlx;
+	t_parsemap	*map_info;
+	// Quizas los sprites
+	void		*ptr;
 	void		*win;
-	int			movements;
-} t_graph;
+} t_global;
 
 // INIT
 t_parsemap		*init_struct(void);
-t_graph			*init_graph(void);
 
 // PARSE
-int 			parse_map(char *argv, t_parsemap **map_info, t_graph **map_graphs);
+int 			parse_map(char *argv, t_parsemap **map_info);
 
 // GRAPHICS & KEYBINDS
-void			start_game(t_parsemap *map, t_graph *mlx);
-void			destroy_display(t_graph *mlx);
-int				key_hook(int key, t_graph *mlx);
+void			start_game(t_parsemap *map);
+// void			destroy_display(t_graph *mlx);
+// int				key_hook(int key, t_graph *mlx);
 
 // VALIDATE
 int  			validate_map(t_parsemap **map_info);

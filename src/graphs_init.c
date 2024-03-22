@@ -6,13 +6,13 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:40:16 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/19 20:03:29 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:45:47 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	load_sprites(t_graph *mlx, t_sprites *sprites)
+/* void	load_sprites(t_graph *mlx, t_sprites *sprites)
 {
 	int	x;
 	int	y;
@@ -80,7 +80,7 @@ void	start_game(t_parsemap *map, t_graph *mlx)
 	//mlx_destroy_display(mlx->mlx);
 	// Keys hook
 	mlx_loop(mlx->mlx);
-}
+} */
 
 	// mlx_destroy_window((*mlx)->mlx, (*mlx)->win); // Al terminar
 	// mlx_destroy_image()

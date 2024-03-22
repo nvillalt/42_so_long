@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/19 18:10:05 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:47:07 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,26 @@ El mapa debe tener una salida, al menos un objeto y una posición inicial.
 int	main(int argc, char **argv)
 {
 	t_parsemap	*map_info;
-	t_graph		*map_graphs;
 
 	map_info = NULL;
-	map_graphs = NULL;
 	if (argc != 2 || ft_strncmpend(argv[1], ".ber", 4) == 0)
 	{
 		write(1, "Wrong extension or arg amount.\n", 31);
 		return (EXIT_FAILURE);
 	}
 	map_info = init_struct(); // Inicializado aquí pero algunas asignaciones de memoria se harán en otros puntos, cuidado con eso (cuidado con la doble matriz)
-	map_graphs = init_graph(); // Inicializado aquí pero asignada la memoria de la matriz dentro de parse.c
-	parse_map(argv[1], &map_info, &map_graphs);
+	//map_graphs = init_graph(); // Inicializado aquí pero asignada la memoria de la matriz dentro de parse.c
+	parse_map(argv[1], &map_info);
+	
 	printf("OK\n");
-/* 	int i = 0;
-	while (map_graphs->map[i])
+	int i = 0;
+	while (map_info->clean_map[i])
 	{
-		printf(map_graphs->map[i]);
+		printf("%s", map_info->clean_map[i]);
 		printf("\n");
-	}*/
-	start_game(map_info, map_graphs); 
+		i++;
+	}
+	//start_game(map_info, map_graphs); 
 	//free(map_info);
 	system("leaks -q so_long");
 	return (0);
