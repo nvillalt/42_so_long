@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:18 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/22 22:15:07 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:06:40 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ typedef struct s_graphics
 {
 	t_sprites	*sprites;
 	t_parsemap	*parse_info;
-	// Quizas los sprites
 	void		*ptr;
 	void		*win;
 } t_graphics;

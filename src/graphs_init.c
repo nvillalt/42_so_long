@@ -6,11 +6,16 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:40:16 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/22 22:10:09 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:23:52 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/* void	check_null_sprite(t_graphics *graphs)
+{
+	
+} */
 
 void	load_sprites(t_graphics *graphs, t_sprites *sprites)
 {
@@ -19,7 +24,7 @@ void	load_sprites(t_graphics *graphs, t_sprites *sprites)
 
 	x = PXL;
 	y = PXL;
-	// Mirar si alguno es nulo y luego si no, liberar todo
+	// Mirar si alguno es nulo/no existe el archivo y luego si no, liberar todo
 	// Proteger esta función
 	sprites->wall = mlx_xpm_file_to_image(graphs->ptr, GRASS, &x, &y);
 	sprites->floor = mlx_xpm_file_to_image(graphs->ptr, PATH, &x, &y);
@@ -30,6 +35,7 @@ void	load_sprites(t_graphics *graphs, t_sprites *sprites)
 	sprites->crash_b = mlx_xpm_file_to_image(graphs->ptr, CRASHBACK, &x, &y);
 	sprites->crash_l = mlx_xpm_file_to_image(graphs->ptr, CRASHLEFT, &x, &y);
 	sprites->crash_r = mlx_xpm_file_to_image(graphs->ptr, CRASHRIGHT, &x, &y);
+	
 	return ;
 }
 
