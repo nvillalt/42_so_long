@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:40:16 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/26 13:23:52 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:11:00 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	start_game(t_parsemap *map_info)
 	sprites = malloc(sizeof(t_sprites));
 	if (!sprites || !graphs)
 		return ;
+	printf("--->function: %p\n", graphs);
 	graphs->parse_info = map_info;
 	graphs->sprites = sprites;
 	graphs->ptr = mlx_init();

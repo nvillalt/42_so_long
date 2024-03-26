@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:18 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/26 13:06:40 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:00:27 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ typedef struct s_sprites
 	void		*crash_b;
 	void		*crash_l;
 	void		*crash_r;
-	void		*crash_rrun;
-	void		*crash_lrun;
+	// void		*crash_rrun;
+	// void		*crash_lrun;
 } t_sprites;
 
 typedef struct s_player
@@ -111,6 +111,11 @@ int 			parse_map(char *argv, t_parsemap **map_info);
 
 // GRAPHICS & KEYBINDS
 void			start_game(t_parsemap *map);
+void			move_character_W(t_graphics *graphs);
+void			move_character_A(t_graphics *graphs);
+void			move_character_S(t_graphics *graphs);
+void			move_character_D(t_graphics *graphs);
+
 // void			destroy_display(t_graph *mlx);
 int				key_hook(int key, t_graphics *graphs);
 
