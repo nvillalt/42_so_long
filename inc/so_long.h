@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:18 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/26 20:00:27 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/01 20:43:44 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ void			move_character_W(t_graphics *graphs);
 void			move_character_A(t_graphics *graphs);
 void			move_character_S(t_graphics *graphs);
 void			move_character_D(t_graphics *graphs);
+void			check_exit(t_graphics *graphs);
+int			close_program(t_graphics *graphs);
 
 // void			destroy_display(t_graph *mlx);
 int				key_hook(int key, t_graphics *graphs);

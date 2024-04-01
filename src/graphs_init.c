@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:40:16 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/26 19:11:00 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/01 20:43:20 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	start_game(t_parsemap *map_info)
 		return ;
 	init_image(graphs, sprites);
 	mlx_key_hook(graphs->win, &key_hook, graphs);
+	mlx_hook(graphs->win, 17, 0, close_program, graphs);
 	//mlx_destroy_display(graphs->ptr);
 	mlx_loop(graphs->ptr);
 }
