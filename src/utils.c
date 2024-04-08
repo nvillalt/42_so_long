@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:23:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/15 16:09:54 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:56:10 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	count_height(t_parsemap **map_info)
 	(*map_info)->win_y = count;
 	if (count < 3)
 		return (error_message(3));
-	// Liberar las matrices de map_info y map_graphs antes de salir.
 	return (1);
 }
 
@@ -68,17 +67,3 @@ int	error_message(int n)
 	exit(EXIT_FAILURE);
 	return (EXIT_FAILURE);
 }
-
-/* void	print_list(t_parsemap *map_info)
-{
-	int		i;
-	int		len;
-
-	i = 0;
-	len = list_len(map_info);
-	while (i < len)
-	{
-		printf("%s", map_info->map_nodes);
-		i++;
-	}
-} */

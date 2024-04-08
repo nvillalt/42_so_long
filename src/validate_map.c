@@ -6,16 +6,11 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:23:03 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/22 21:52:24 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:55:49 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// Algoritmo de flood-fill
-
-// Algoritmo de flood_fill que además mira que tenga el número de coleccionables y exit == al que ya he guardado
-// Ahora mismo se puede pasar sobre la salida, no es un muro.
 
 void	flood_fill(t_parsemap **map_info, int x, int y)
 {

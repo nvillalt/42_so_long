@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:40:16 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/01 20:43:20 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:15:03 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	load_sprites(t_graphics *graphs, t_sprites *sprites)
 	sprites->crash_b = mlx_xpm_file_to_image(graphs->ptr, CRASHBACK, &x, &y);
 	sprites->crash_l = mlx_xpm_file_to_image(graphs->ptr, CRASHLEFT, &x, &y);
 	sprites->crash_r = mlx_xpm_file_to_image(graphs->ptr, CRASHRIGHT, &x, &y);
-	
+
 	return ;
 }
 
@@ -52,7 +52,7 @@ void	init_image(t_graphics *graphs, t_sprites *sprites)
 		while (graphs->parse_info->clean_map[j][i])
 		{
 			if (graphs->parse_info->clean_map[j][i] == '1')
-				mlx_put_image_to_window(graphs->ptr, graphs->win, sprites->wall,  i * PXL, j * PXL);
+				mlx_put_image_to_window(graphs->ptr, graphs->win, sprites->wall, i * PXL, j * PXL);
 			else if (graphs->parse_info->clean_map[j][i] == '0')
 				mlx_put_image_to_window(graphs->ptr, graphs->win, sprites->floor, i * PXL, j * PXL);
 			else if (graphs->parse_info->clean_map[j][i] == 'E')
@@ -67,6 +67,7 @@ void	init_image(t_graphics *graphs, t_sprites *sprites)
 	}
 	return ;
 }
+
 void	start_game(t_parsemap *map_info)
 {
 	t_sprites	*sprites;
@@ -80,7 +81,7 @@ void	start_game(t_parsemap *map_info)
 	graphs->parse_info = map_info;
 	graphs->sprites = sprites;
 	graphs->ptr = mlx_init();
-	if (!graphs->ptr) // Liberaciones de memoria y volver
+	if (!graphs->ptr)
 		return ;
 	graphs->win = mlx_new_window(graphs->ptr, (map_info->win_x * PXL), (map_info->win_y * PXL), "so_long");
 	if (!graphs->win)
