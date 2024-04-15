@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvillalt <nvillalt@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 09:10:25 by nvillalt          #+#    #+#             */
-/*   Updated: 2023/12/26 19:13:20 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:41:10 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ char	*ft_get_returned_line(char *saved)
 		return (NULL);
 	while (saved[len] != '\0' && saved[len] != '\n')
 		len++;
-	if (saved[len] ==  '\n')
+	if (saved[len] == '\n')
 		len++;
-	final = ft_calloc_gnl(sizeof(char), len + 1); 	
+	final = ft_calloc_gnl(sizeof(char), len + 1);
 	if (!final)
 		return (NULL);
 	len = 0;
@@ -57,7 +57,7 @@ char	*ft_get_returned_line(char *saved)
 
 char	*ft_read_fd(int fd, char *saved)
 {
-	char	*buffer; 
+	char	*buffer;
 	ssize_t	read_chars;
 
 	buffer = ft_calloc_gnl(sizeof(char), BUFFER_SIZE + 1);
@@ -84,7 +84,7 @@ char	*ft_read_fd(int fd, char *saved)
 char	*get_next_line(int fd)
 {
 	static char	*saved;
-	char	*final;
+	char		*final;
 
 	saved = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)

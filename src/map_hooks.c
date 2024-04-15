@@ -6,51 +6,63 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:08:38 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/08 18:11:39 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:58:55 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_program(t_graphics *graphs)
+// static void	free_struct(t_graphics *g)
+// {
+// 	if (g->s)
+// 		free(g->s);
+// 	if (g->inf->map)
+// 		free_matrix(g->inf->map);
+// 	if (g->inf->clean_map)
+// 		free_matrix(g->inf->clean_map);
+	
+// }
+
+int	close_program(t_graphics *g)
 {
-	mlx_destroy_window(graphs->ptr, graphs->win);
+	mlx_destroy_window(g->p, g->w);
+	//free_struct(g);
 	system("leaks -q so_long");
 	exit(EXIT_SUCCESS);
 	return (0);
 }
 
-void	check_exit(t_graphics *graphs)
+void	check_exit(t_graphics *g)
 {
 	int	p_x;
 	int	p_y;
 	int	exit_x;
 	int	exit_y;
 
-	p_x = graphs->parse_info->player.x;
-	p_y = graphs->parse_info->player.y;
-	exit_x = graphs->parse_info->exit.x;
-	exit_y = graphs->parse_info->exit.y;
-	if (graphs->parse_info->collectables == 0)
-		mlx_put_image_to_window(graphs->ptr, graphs->win,
-			graphs->sprites->exit_op, exit_y * PXL, exit_x * PXL);
-	if (graphs->parse_info->clean_map[p_x][p_y] == 'E' &&
-		graphs->parse_info->collectables == 0)
-		close_program(graphs);
+	p_x = g->inf->player.x;
+	p_y = g->inf->player.y;
+	exit_x = g->inf->exit.x;
+	exit_y = g->inf->exit.y;
+	if (g->inf->obj == 0)
+		mlx_put_image_to_window(g->p, g->w,
+			g->s->exit_op, exit_y * PX, exit_x * PX);
+	if (g->inf->clean_map[p_x][p_y] == 'E' &&
+		g->inf->obj == 0)
+		close_program(g);
 	return ;
 }
 
-int	key_hook(int key, t_graphics *graphs)
+int	key_hook(int key, t_graphics *g)
 {
 	if (key == ESC || key == KEY_Q)
-		close_program(graphs);
+		close_program(g);
 	else if (key == KEY_A || key == KEY_LEFT)
-		move_character_A(graphs);
+		move_character_a(g);
 	else if (key == KEY_D || key == KEY_RIGHT)
-		move_character_D(graphs);
+		move_character_d(g);
 	else if (key == KEY_S || key == KEY_DOWN)
-		move_character_S(graphs);
+		move_character_s(g);
 	else if (key == KEY_W || key == KEY_UP)
-		move_character_W(graphs);
+		move_character_w(g);
 	return (0);
 }

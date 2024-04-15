@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   libft_ft_strchr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 19:36:32 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/15 17:58:38 by nvillalt         ###   ########.fr       */
+/*   Created: 2023/11/08 15:22:13 by nvillalt          #+#    #+#             */
+/*   Updated: 2024/04/15 14:30:00 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-t_parsemap	*init_struct(void)
+char	*ft_strchr(const char *str, int c)
 {
-	t_parsemap	*mapinf;
+	int				i;
+	unsigned char	*copy;
 
-	mapinf = malloc(sizeof(t_parsemap));
-	if (!mapinf)
-		error_message(20);
-	mapinf->w_x = -1;
-	mapinf->w_y = -1;
-	mapinf->fd = 0;
-	mapinf->map = NULL;
-	mapinf->clean_map = NULL;
-	mapinf->obj = 0;
-	mapinf->exit_num = 0;
-	mapinf->player_num = 0;
-	mapinf->exit_check = 0;
-	mapinf->obj_check = 0;
-	mapinf->player.mov = 0;
-	return (mapinf);
+	i = 0;
+	copy = (unsigned char *)str;
+	while (copy[i] != '\0')
+	{
+		if (copy[i] == (unsigned char)c)
+			return ((char *)copy + i);
+		i++;
+	}
+	if (copy[i] == (unsigned char)c)
+		return ((char *)copy + i);
+	else
+		return (0);
 }

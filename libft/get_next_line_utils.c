@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 09:36:41 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/08 15:59:46 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:43:27 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ char	*ft_strjoin_gnl(char *saved, char *buffer)
 
 	i = 0;
 	j = 0;
-	join = ft_calloc_gnl(sizeof(char), ft_strlen_gnl(saved) + ft_strlen_gnl(buffer) + 1);
+	join = ft_calloc_gnl(sizeof(char),
+			ft_strlen_gnl(saved) + ft_strlen_gnl(buffer) + 1);
 	if (!join)
 		return (free(saved), NULL);
 	while (saved && saved[i] != '\0')

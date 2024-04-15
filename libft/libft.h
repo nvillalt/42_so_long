@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 16:23:25 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/03/08 17:51:48 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:40:27 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <stdarg.h>
+# include <stdint.h>
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}t_list;
+}	t_list;
 
 void		ft_bzero(void *ptr, size_t n);
 void		ft_putchar_fd(char c, int fd);
@@ -61,6 +63,15 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t n);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
+
+// PRINTF
+int			ft_printf(const char *str, ...);
+int			ft_putunsig_pf(unsigned int n);
+int			ft_putstr_pf(char *s);
+int			ft_putptr_pf(void *ptr);
+int			ft_putnbr_pf(int n);
+int			ft_putbase_pf(unsigned int n, int tf);
+int			ft_putchar_pf(int c);
 
 t_list		*ft_lstnew(void *content);
 t_list		*ft_lstlast(t_list *lst);

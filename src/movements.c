@@ -1,121 +1,121 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements.c                                        :+:      :+:    :+:   */
+/*   mov.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 19:57:01 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/08 18:08:55 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:09:07 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_character_D(t_graphics *graphs)
+void	move_character_d(t_graphics *g)
 {
 	int	x;
 	int	y;
 
-	x = graphs->parse_info->player.x;
-	y = graphs->parse_info->player.y;
-	if (graphs->parse_info->clean_map[x][y + 1] != '1')
+	x = g->inf->player.x;
+	y = g->inf->player.y;
+	if (g->inf->clean_map[x][y + 1] != '1')
 	{
-		if (graphs->parse_info->clean_map[x][y] == '0' || graphs->parse_info->clean_map[x][y] == 'P')
-			mlx_put_image_to_window(graphs->ptr, graphs->win, graphs->sprites->floor,  y * PXL, x * PXL);
-		if (graphs->parse_info->clean_map[x][y] == 'E' && graphs->parse_info->collectables != 0)
-			mlx_put_image_to_window(graphs->ptr, graphs->win, graphs->sprites->exit_cl,  y * PXL, x * PXL);
-		graphs->parse_info->player.y += 1;
-		y = graphs->parse_info->player.y;
-		if (graphs->parse_info->clean_map[x][y] == 'C')
+		if (g->inf->clean_map[x][y] == '0' || g->inf->clean_map[x][y] == 'P')
+			mlx_put_image_to_window(g->p, g->w, g->s->f, y * PX, x * PX);
+		if (g->inf->clean_map[x][y] == 'E' && g->inf->obj != 0)
+			mlx_put_image_to_window(g->p, g->w, g->s->excl, y * PX, x * PX);
+		g->inf->player.y += 1;
+		y = g->inf->player.y;
+		if (g->inf->clean_map[x][y] == 'C')
 		{
-			graphs->parse_info->collectables--;
-			graphs->parse_info->clean_map[x][y] = '0';
+			g->inf->obj--;
+			g->inf->clean_map[x][y] = '0';
 		}
-		mlx_put_image_to_window(graphs->ptr, graphs->win, graphs->sprites->crash_r,  y * PXL, x * PXL);
-		graphs->parse_info->player.movements += 1;
+		mlx_put_image_to_window(g->p, g->w, g->s->crash_r, y * PX, x * PX);
+		g->inf->player.mov += 1;
 	}
-	printf("Taps: %d\n", graphs->parse_info->player.movements); //CAMBIAR POR FT_PRINTF
-	check_exit(graphs);
+	ft_printf("Taps: %d\n", g->inf->player.mov);
+	check_exit(g);
 }
 
-void	move_character_A(t_graphics *graphs)
+void	move_character_a(t_graphics *g)
 {
 	int	x;
 	int	y;
 
-	x = graphs->parse_info->player.x;
-	y = graphs->parse_info->player.y;
-	if (graphs->parse_info->clean_map[x][y - 1] != '1')
+	x = g->inf->player.x;
+	y = g->inf->player.y;
+	if (g->inf->clean_map[x][y - 1] != '1')
 	{
-		if (graphs->parse_info->clean_map[x][y] == '0' || graphs->parse_info->clean_map[x][y] == 'P')
-			mlx_put_image_to_window(graphs->ptr, graphs->win, graphs->sprites->floor,  y * PXL, x * PXL);
-		if (graphs->parse_info->clean_map[x][y] == 'E' && graphs->parse_info->collectables != 0)
-			mlx_put_image_to_window(graphs->ptr, graphs->win, graphs->sprites->exit_cl,  y * PXL, x * PXL);
-		graphs->parse_info->player.y -= 1;
-		y = graphs->parse_info->player.y;
-		if (graphs->parse_info->clean_map[x][y] == 'C')
+		if (g->inf->clean_map[x][y] == '0' || g->inf->clean_map[x][y] == 'P')
+			mlx_put_image_to_window(g->p, g->w, g->s->f, y * PX, x * PX);
+		if (g->inf->clean_map[x][y] == 'E' && g->inf->obj != 0)
+			mlx_put_image_to_window(g->p, g->w, g->s->excl, y * PX, x * PX);
+		g->inf->player.y -= 1;
+		y = g->inf->player.y;
+		if (g->inf->clean_map[x][y] == 'C')
 		{
-			graphs->parse_info->collectables--;
-			graphs->parse_info->clean_map[x][y] = '0';
+			g->inf->obj--;
+			g->inf->clean_map[x][y] = '0';
 		}
-		mlx_put_image_to_window(graphs->ptr, graphs->win, graphs->sprites->crash_l,  y * PXL, x * PXL);
-		graphs->parse_info->player.movements += 1;
+		mlx_put_image_to_window(g->p, g->w, g->s->crash_l, y * PX, x * PX);
+		g->inf->player.mov += 1;
 	}
-	printf("Taps: %d\n", graphs->parse_info->player.movements); //CAMBIAR POR FT_PRINTF
-	check_exit(graphs);
+	ft_printf("Taps: %d\n", g->inf->player.mov);
+	check_exit(g);
 }
 
-void	move_character_W(t_graphics *graphs)
+void	move_character_w(t_graphics *g)
 {
 	int	x;
 	int	y;
 
-	x = graphs->parse_info->player.x;
-	y = graphs->parse_info->player.y;
-	if (graphs->parse_info->clean_map[x - 1][y] != '1')
+	x = g->inf->player.x;
+	y = g->inf->player.y;
+	if (g->inf->clean_map[x - 1][y] != '1')
 	{
-		if (graphs->parse_info->clean_map[x][y] == '0' || graphs->parse_info->clean_map[x][y] == 'P')
-			mlx_put_image_to_window(graphs->ptr, graphs->win, graphs->sprites->floor,  y * PXL, x * PXL);
-		if (graphs->parse_info->clean_map[x][y] == 'E' && graphs->parse_info->collectables != 0)
-			mlx_put_image_to_window(graphs->ptr, graphs->win, graphs->sprites->exit_cl,  y * PXL, x * PXL);
-		graphs->parse_info->player.x -= 1;
-		x = graphs->parse_info->player.x;
-		if (graphs->parse_info->clean_map[x][y] == 'C')
+		if (g->inf->clean_map[x][y] == '0' || g->inf->clean_map[x][y] == 'P')
+			mlx_put_image_to_window(g->p, g->w, g->s->f, y * PX, x * PX);
+		if (g->inf->clean_map[x][y] == 'E' && g->inf->obj != 0)
+			mlx_put_image_to_window(g->p, g->w, g->s->excl, y * PX, x * PX);
+		g->inf->player.x -= 1;
+		x = g->inf->player.x;
+		if (g->inf->clean_map[x][y] == 'C')
 		{
-			graphs->parse_info->collectables--;
-			graphs->parse_info->clean_map[x][y] = '0';
+			g->inf->obj--;
+			g->inf->clean_map[x][y] = '0';
 		}
-		mlx_put_image_to_window(graphs->ptr, graphs->win, graphs->sprites->crash_b,  y * PXL, x * PXL);
-		graphs->parse_info->player.movements += 1;
+		mlx_put_image_to_window(g->p, g->w, g->s->crash_b, y * PX, x * PX);
+		g->inf->player.mov += 1;
 	}
-	printf("Taps: %d\n", graphs->parse_info->player.movements); //CAMBIAR POR FT_PRINTF
-	check_exit(graphs);
+	ft_printf("Taps: %d\n", g->inf->player.mov);
+	check_exit(g);
 }
 
-void	move_character_S(t_graphics *graphs)
+void	move_character_s(t_graphics *g)
 {
 	int	x;
 	int	y;
 
-	x = graphs->parse_info->player.x;
-	y = graphs->parse_info->player.y;
-	if (graphs->parse_info->clean_map[x + 1][y] != '1')
+	x = g->inf->player.x;
+	y = g->inf->player.y;
+	if (g->inf->clean_map[x + 1][y] != '1')
 	{
-		if (graphs->parse_info->clean_map[x][y] == '0' || graphs->parse_info->clean_map[x][y] == 'P')
-			mlx_put_image_to_window(graphs->ptr, graphs->win, graphs->sprites->floor,  y * PXL, x * PXL);
-		if (graphs->parse_info->clean_map[x][y] == 'E' && graphs->parse_info->collectables != 0)
-			mlx_put_image_to_window(graphs->ptr, graphs->win, graphs->sprites->exit_cl,  y * PXL, x * PXL);
-		graphs->parse_info->player.x += 1;
-		x = graphs->parse_info->player.x;
-		if (graphs->parse_info->clean_map[x][y] == 'C')
+		if (g->inf->clean_map[x][y] == '0' || g->inf->clean_map[x][y] == 'P')
+			mlx_put_image_to_window(g->p, g->w, g->s->f, y * PX, x * PX);
+		if (g->inf->clean_map[x][y] == 'E' && g->inf->obj != 0)
+			mlx_put_image_to_window(g->p, g->w, g->s->excl, y * PX, x * PX);
+		g->inf->player.x += 1;
+		x = g->inf->player.x;
+		if (g->inf->clean_map[x][y] == 'C')
 		{
-			graphs->parse_info->collectables--;
-			graphs->parse_info->clean_map[x][y] = '0';
+			g->inf->obj--;
+			g->inf->clean_map[x][y] = '0';
 		}
-		mlx_put_image_to_window(graphs->ptr, graphs->win, graphs->sprites->crash_f,  y * PXL, x * PXL);
-		graphs->parse_info->player.movements += 1;
+		mlx_put_image_to_window(g->p, g->w, g->s->crash_f, y * PX, x * PX);
+		g->inf->player.mov += 1;
 	}
-	printf("Taps: %d\n", graphs->parse_info->player.movements); //CAMBIAR POR FT_PRINTF
-	check_exit(graphs);
+	ft_printf("Taps: %d\n", g->inf->player.mov);
+	check_exit(g);
 }

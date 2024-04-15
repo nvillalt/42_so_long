@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   print_integer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 19:36:32 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/15 17:58:38 by nvillalt         ###   ########.fr       */
+/*   Created: 2023/11/08 19:33:26 by nvillalt          #+#    #+#             */
+/*   Updated: 2024/04/15 17:54:24 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-t_parsemap	*init_struct(void)
+int	ft_putnbr_pf(int n)
 {
-	t_parsemap	*mapinf;
+	long int	num;
+	int			num_chars;
 
-	mapinf = malloc(sizeof(t_parsemap));
-	if (!mapinf)
-		error_message(20);
-	mapinf->w_x = -1;
-	mapinf->w_y = -1;
-	mapinf->fd = 0;
-	mapinf->map = NULL;
-	mapinf->clean_map = NULL;
-	mapinf->obj = 0;
-	mapinf->exit_num = 0;
-	mapinf->player_num = 0;
-	mapinf->exit_check = 0;
-	mapinf->obj_check = 0;
-	mapinf->player.mov = 0;
-	return (mapinf);
+	num = n;
+	num_chars = 0;
+	if (num < 0)
+	{
+		num_chars++;
+		write (1, "-", 1);
+		num *= -1;
+	}
+	if (num > 9)
+	{
+		num_chars += ft_putnbr_pf(num / 10);
+		num_chars += ft_putnbr_pf(num % 10);
+	}
+	else
+		num_chars += ft_putchar_pf(num + '0');
+	return (num_chars);
 }

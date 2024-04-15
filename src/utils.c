@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:23:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/08 17:56:10 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:51:02 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ int	check_chars(char *str)
 	return (1);
 }
 
-int	count_height(t_parsemap **map_info)
+int	count_height(t_parsemap **mapinf)
 {
 	int	count;
 
 	count = 0;
-	if ((*map_info)->win_y == -1)
+	if ((*mapinf)->w_y == -1)
 	{
-		while ((*map_info)->map[count])
+		while ((*mapinf)->map[count])
 			count++;
 	}
-	(*map_info)->win_y = count;
+	(*mapinf)->w_y = count;
 	if (count < 3)
 		return (error_message(3));
 	return (1);

@@ -6,50 +6,50 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:23:03 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/08 17:55:49 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:13:13 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	flood_fill(t_parsemap **map_info, int x, int y)
+void	flood_fill(t_parsemap **mapinf, int x, int y)
 {
 	int	wall;
 
 	wall = '1';
-	if ((*map_info)->map[x][y] == wall || (*map_info)->map[x][y] == 'A')
+	if ((*mapinf)->map[x][y] == wall || (*mapinf)->map[x][y] == 'A')
 		return ;
-	if ((*map_info)->map[x][y] == 'C')
-		(*map_info)->collectables_check++;
-	if ((*map_info)->map[x][y] == 'E')
-		(*map_info)->exit_check++;
-	(*map_info)->map[x][y] = 'A';
-	flood_fill(map_info, x, (y + 1));
-	flood_fill(map_info, x, (y - 1));
-	flood_fill(map_info, (x + 1), y);
-	flood_fill(map_info, (x - 1), y);
+	if ((*mapinf)->map[x][y] == 'C')
+		(*mapinf)->obj_check++;
+	if ((*mapinf)->map[x][y] == 'E')
+		(*mapinf)->exit_check++;
+	(*mapinf)->map[x][y] = 'A';
+	flood_fill(mapinf, x, (y + 1));
+	flood_fill(mapinf, x, (y - 1));
+	flood_fill(mapinf, (x + 1), y);
+	flood_fill(mapinf, (x - 1), y);
 }
 
-static int	check_exit_player(t_parsemap **map_info)
+static int	check_exit_player(t_parsemap **mapinf)
 {
 	int	x;
 	int	y;
 
 	x = 0;
-	while ((*map_info)->map[x])
+	while ((*mapinf)->map[x])
 	{
 		y = 0;
-		while ((*map_info)->map[x][y])
+		while ((*mapinf)->map[x][y])
 		{
-			if ((*map_info)->map[x][y] == 'P')
+			if ((*mapinf)->map[x][y] == 'P')
 			{
-				(*map_info)->player.x = x;
-				(*map_info)->player.y = y;
+				(*mapinf)->player.x = x;
+				(*mapinf)->player.y = y;
 			}
-			if ((*map_info)->map[x][y] == 'E')
+			if ((*mapinf)->map[x][y] == 'E')
 			{
-				(*map_info)->exit.x = x;
-				(*map_info)->exit.y = y;
+				(*mapinf)->exit.x = x;
+				(*mapinf)->exit.y = y;
 			}
 			y++;
 		}
@@ -58,13 +58,13 @@ static int	check_exit_player(t_parsemap **map_info)
 	return (1);
 }
 
-int	validate_map(t_parsemap **map_info)
+int	validate_map(t_parsemap **mapinf)
 {
-	check_exit_player(map_info);
-	flood_fill(map_info, (*map_info)->player.x, (*map_info)->player.y);
-	if ((*map_info)->collectables != (*map_info)->collectables_check)
+	check_exit_player(mapinf);
+	flood_fill(mapinf, (*mapinf)->player.x, (*mapinf)->player.y);
+	if ((*mapinf)->obj != (*mapinf)->obj_check)
 		return (error_message(5));
-	if ((*map_info)->exit_num != (*map_info)->exit_check)
+	if ((*mapinf)->exit_num != (*mapinf)->exit_check)
 		return (error_message(5));
 	return (1);
 }

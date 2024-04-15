@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:18 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/01 20:43:44 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:50:55 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <mlx.h>
 
 /* ···· size ···· */
-# define PXL 50
+# define PX 50
 
 /* ···· sprites route ···· */
 # define PATH "assets/path.xpm"
@@ -47,90 +47,85 @@
 # define KEY_LEFT 123
 # define KEY_DOWN 125
 
-// Quizás luego hacer otro struct para ir almacenando todo lo que tiene el player (sumar 1 a los collectables)
-// cuando los tenga, para cuando sea igual al número total de collectables, etc.
-
 typedef struct s_sprites
 {
-	void		*floor;
+	void		*f;
 	void		*wall;
 	void		*apple;
-	void		*exit_cl;
+	void		*excl;
 	void		*exit_op;
 	void		*crash_f;
 	void		*crash_b;
 	void		*crash_l;
 	void		*crash_r;
-	// void		*crash_rrun;
-	// void		*crash_lrun;
-} t_sprites;
+}	t_sprites;
 
 typedef struct s_player
 {
-	int			x;
-	int			y;
-	int			movements; // Movements made by the player
-	int			collectables; // Collectables picked up
-} t_player;
+	int	x;
+	int	y;
+	int	mov;
+	int	obj;
+}	t_player;
 
 typedef struct s_exit
 {
 	int			x;
 	int			y;
-} t_exit;
+}	t_exit;
 
-typedef	struct s_parsemap
+typedef struct s_parsemap
 {
 	char		**clean_map;
-	char		**map; // Copia del mapa para pintar y validar con el floodfill
-	int			win_x;
-	int			win_y;
+	char		**map;
+	int			w_x;
+	int			w_y;
 	int			fd;
-	int			collectables;
-	int			collectables_check;
+	int			obj;
+	int			obj_check;
 	int			exit_check;
 	int			exit_num;
 	int			player_num;
 	t_player	player;
 	t_exit		exit;
-} t_parsemap;
+}	t_parsemap;
 
 typedef struct s_graphics
 {
-	t_sprites	*sprites;
-	t_parsemap	*parse_info;
-	void		*ptr;
-	void		*win;
-} t_graphics;
+	t_sprites	*s;
+	t_parsemap	*inf;
+	void		*p;
+	void		*w;
+}	t_graphics;
 
 // INIT
 t_parsemap		*init_struct(void);
 
 // PARSE
-int 			parse_map(char *argv, t_parsemap **map_info);
+int				parse_map(char *argv, t_parsemap **mapinf);
 
 // GRAPHICS & KEYBINDS
 void			start_game(t_parsemap *map);
-void			move_character_W(t_graphics *graphs);
-void			move_character_A(t_graphics *graphs);
-void			move_character_S(t_graphics *graphs);
-void			move_character_D(t_graphics *graphs);
-void			check_exit(t_graphics *graphs);
-int			close_program(t_graphics *graphs);
+void			move_character_w(t_graphics *g);
+void			move_character_a(t_graphics *g);
+void			move_character_s(t_graphics *g);
+void			move_character_d(t_graphics *g);
+void			check_exit(t_graphics *g);
+int				close_program(t_graphics *g);
 
 // void			destroy_display(t_graph *mlx);
-int				key_hook(int key, t_graphics *graphs);
+int				key_hook(int key, t_graphics *g);
 
 // VALIDATE
-int  			validate_map(t_parsemap **map_info);
+int				validate_map(t_parsemap **mapinf);
 
 // UTILS
-int  			check_chars(char *str);
-int 			error_message(int n);
-int				count_height(t_parsemap **map_info);
+int				check_chars(char *str);
+int				error_message(int n);
+int				count_height(t_parsemap **mapinf);
 
 // SUPPORT FUNCTIONS
-char			*gnl_modified(int fd); // + utils de gnl_modified
+char			*gnl_modified(int fd);
 char			*ft_strjoin_mod(char *saved, char *buffer);
 int				ft_strncmpend(char *s1, char *s2, int n);
 int				ft_strlen_mod(char *str);

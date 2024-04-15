@@ -6,94 +6,114 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:40:16 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/08 18:15:03 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:53:47 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* void	check_null_sprite(t_graphics *graphs)
-{
-	
-} */
-
-void	load_sprites(t_graphics *graphs, t_sprites *sprites)
+static int	load_sprites(t_graphics *g, t_sprites *s)
 {
 	int	x;
 	int	y;
 
-	x = PXL;
-	y = PXL;
-	// Mirar si alguno es nulo/no existe el archivo y luego si no, liberar todo
-	// Proteger esta función
-	sprites->wall = mlx_xpm_file_to_image(graphs->ptr, GRASS, &x, &y);
-	sprites->floor = mlx_xpm_file_to_image(graphs->ptr, PATH, &x, &y);
-	sprites->apple = mlx_xpm_file_to_image(graphs->ptr, APPLE, &x, &y);
-	sprites->exit_cl = mlx_xpm_file_to_image(graphs->ptr, ROCK, &x, &y);
-	sprites->exit_op = mlx_xpm_file_to_image(graphs->ptr, MASK, &x, &y);
-	sprites->crash_f = mlx_xpm_file_to_image(graphs->ptr, CRASHFRONT, &x, &y);
-	sprites->crash_b = mlx_xpm_file_to_image(graphs->ptr, CRASHBACK, &x, &y);
-	sprites->crash_l = mlx_xpm_file_to_image(graphs->ptr, CRASHLEFT, &x, &y);
-	sprites->crash_r = mlx_xpm_file_to_image(graphs->ptr, CRASHRIGHT, &x, &y);
-
-	return ;
+	x = PX;
+	y = PX;
+	s->wall = mlx_xpm_file_to_image(g->p, GRASS, &x, &y);
+	if (!s->wall)
+		return (error_message(20));
+	s->f = mlx_xpm_file_to_image(g->p, PATH, &x, &y);
+	if (!s->f)
+		return (error_message(20));
+	s->apple = mlx_xpm_file_to_image(g->p, APPLE, &x, &y);
+	if (!s->apple)
+		return (error_message(20));
+	s->excl = mlx_xpm_file_to_image(g->p, ROCK, &x, &y);
+	if (!s->excl)
+		return (error_message(20));
+	s->exit_op = mlx_xpm_file_to_image(g->p, MASK, &x, &y);
+	if (!s->exit_op)
+		return (error_message(20));
+	return (1);
 }
 
-void	init_image(t_graphics *graphs, t_sprites *sprites)
+static int	load_crash(t_graphics *g, t_sprites *s)
+{
+	int	x;
+	int	y;
+
+	x = PX;
+	y = PX;
+	s->crash_f = mlx_xpm_file_to_image(g->p, CRASHFRONT, &x, &y);
+	if (!s->exit_op)
+		return (error_message(20));
+	s->crash_b = mlx_xpm_file_to_image(g->p, CRASHBACK, &x, &y);
+	if (!s->exit_op)
+		return (error_message(20));
+	s->crash_l = mlx_xpm_file_to_image(g->p, CRASHLEFT, &x, &y);
+	if (!s->exit_op)
+		return (error_message(20));
+	s->crash_r = mlx_xpm_file_to_image(g->p, CRASHRIGHT, &x, &y);
+	if (!s->exit_op)
+		return (error_message(20));
+	return (1);
+}
+
+void	init_image(t_graphics *g, t_sprites *s)
 {
 	int	i;
 	int	j;
 
-	load_sprites(graphs, sprites);
+	load_sprites(g, s);
+	load_crash(g, s);
 	j = 0;
-	while (graphs->parse_info->clean_map[j])
+	while (g->inf->clean_map[j])
 	{
-		i = 0;
-		while (graphs->parse_info->clean_map[j][i])
+		i = -1;
+		while (g->inf->clean_map[j][++i])
 		{
-			if (graphs->parse_info->clean_map[j][i] == '1')
-				mlx_put_image_to_window(graphs->ptr, graphs->win, sprites->wall, i * PXL, j * PXL);
-			else if (graphs->parse_info->clean_map[j][i] == '0')
-				mlx_put_image_to_window(graphs->ptr, graphs->win, sprites->floor, i * PXL, j * PXL);
-			else if (graphs->parse_info->clean_map[j][i] == 'E')
-				mlx_put_image_to_window(graphs->ptr, graphs->win, sprites->exit_cl, i * PXL, j * PXL);
-			else if (graphs->parse_info->clean_map[j][i] == 'P')
-				mlx_put_image_to_window(graphs->ptr, graphs->win, sprites->crash_r, i * PXL, j * PXL);
-			else if (graphs->parse_info->clean_map[j][i] == 'C')
-				mlx_put_image_to_window(graphs->ptr, graphs->win, sprites->apple, i * PXL, j * PXL);
-			i++;
+			if (g->inf->clean_map[j][i] == '1')
+				mlx_put_image_to_window(g->p, g->w, s->wall, i * PX, j * PX);
+			else if (g->inf->clean_map[j][i] == '0')
+				mlx_put_image_to_window(g->p, g->w, s->f, i * PX, j * PX);
+			else if (g->inf->clean_map[j][i] == 'E')
+				mlx_put_image_to_window(g->p, g->w, s->excl, i * PX, j * PX);
+			else if (g->inf->clean_map[j][i] == 'P')
+				mlx_put_image_to_window(g->p, g->w, s->crash_r, i * PX, j * PX);
+			else if (g->inf->clean_map[j][i] == 'C')
+				mlx_put_image_to_window(g->p, g->w, s->apple, i * PX, j * PX);
 		}
 		j++;
 	}
 	return ;
 }
 
-void	start_game(t_parsemap *map_info)
+void	start_game(t_parsemap *mapinf)
 {
-	t_sprites	*sprites;
-	t_graphics	*graphs;
+	t_sprites	*s;
+	t_graphics	*g;
 
-	graphs = malloc(sizeof(t_graphics));
-	sprites = malloc(sizeof(t_sprites));
-	if (!sprites || !graphs)
+	g = malloc(sizeof(t_graphics));
+	s = malloc(sizeof(t_sprites));
+	if (!s || !g)
 		return ;
-	printf("--->function: %p\n", graphs);
-	graphs->parse_info = map_info;
-	graphs->sprites = sprites;
-	graphs->ptr = mlx_init();
-	if (!graphs->ptr)
+	g->inf = mapinf;
+	g->s = s;
+	g->p = mlx_init();
+	if (!g->p)
 		return ;
-	graphs->win = mlx_new_window(graphs->ptr, (map_info->win_x * PXL), (map_info->win_y * PXL), "so_long");
-	if (!graphs->win)
+	g->w = mlx_new_window(g->p, (mapinf->w_x * PX),
+			(mapinf->w_y * PX), "so_long");
+	if (!g->w)
 		return ;
-	init_image(graphs, sprites);
-	mlx_key_hook(graphs->win, &key_hook, graphs);
-	mlx_hook(graphs->win, 17, 0, close_program, graphs);
-	//mlx_destroy_display(graphs->ptr);
-	mlx_loop(graphs->ptr);
+	init_image(g, s);
+	mlx_key_hook(g->w, &key_hook, g);
+	mlx_hook(g->w, 17, 0, close_program, g);
+	//mlx_destroy_display(g->p);
+	mlx_loop(g->p);
 }
 
-	// mlx_destroy_window((*mlx)->mlx, (*mlx)->win); // Al terminar
+	// mlx_destroy_wdow((*mlx)->mlx, (*mlx)->w); // Al terminar
 	// mlx_destroy_image()
 	// mlx_destroy_display((*mlx)->mlx);
 	//free ((*mlx)->mlx); -> Liberar eventualmente

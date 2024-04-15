@@ -6,7 +6,7 @@
 #    By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/23 11:59:52 by nvillalt          #+#    #+#              #
-#    Updated: 2024/03/08 17:51:31 by nvillalt         ###   ########.fr        #
+#    Updated: 2024/04/15 17:38:02 by nvillalt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,14 @@ SRCS = ft_atoi.c \
 	   ft_strcmp.c \
 	   get_next_line.c \
 	   get_next_line_utils.c \
-	   ft_putstr.c
+	   ft_putstr.c \
+		print_character.c \
+		print_hexadecimal.c \
+		print_integer.c \
+		print_pointer.c \
+		print_string.c \
+		print_unsigned.c \
+		ft_printf.c 
 
 BONUS = ft_lstnew_bonus.c \
 		ft_lstadd_front_bonus.c \
