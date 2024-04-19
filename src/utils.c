@@ -6,11 +6,12 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:23:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/19 09:11:25 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/19 10:10:41 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 
 int	check_chars(char *str, t_parsemap **mapinf)
 {

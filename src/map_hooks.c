@@ -6,22 +6,16 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:08:38 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/19 10:03:09 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/19 10:11:00 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_leaks()
-{
-	system("leaks -q so_long");
-	return (1);
-}
-
 int	close_program(t_graphics *g)
 {
 	mlx_destroy_window(g->p, g->w);
-	atexit(ft_leaks);
+	system("leaks -q so_long");
 	exit(EXIT_SUCCESS);
 	return (0);
 }

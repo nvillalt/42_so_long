@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:40:16 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/19 09:25:38 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/19 10:05:03 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,5 @@ int	start_game(t_parsemap *mapinf)
 	mlx_key_hook(g->w, &key_hook, g);
 	mlx_hook(g->w, 17, 0, close_program, g);
 	mlx_loop(g->p);
+	return (1);
 }
-
-	// mlx_destroy_wdow((*mlx)->mlx, (*mlx)->w); // Al terminar
-	// mlx_destroy_image()
-	// mlx_destroy_display((*mlx)->mlx);
-	//free ((*mlx)->mlx); -> Liberar eventualmente

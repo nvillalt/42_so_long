@@ -6,7 +6,7 @@
 #    By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 20:05:20 by nvillalt          #+#    #+#              #
-#    Updated: 2024/04/19 08:32:38 by nvillalt         ###   ########.fr        #
+#    Updated: 2024/04/19 10:04:25 by nvillalt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ INC_PATH = inc/
 
 #····CC + FLAGS ···#
 CC = cc
-CFLAGS = -Wall -Wextra -g3 #-Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3
 CFLAGS += -I $(INC_PATH) -I $(LIBFT_DIR) -I $(SRC_PATH) 
 MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
