@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 08:42:23 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/19 10:06:49 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:38:29 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,17 @@ void	free_parse_struct(t_parsemap *mapinf)
 
 void	free_graph_struct(t_graphics *g)
 {
+	// printf("-->%p\n", g->inf);
+	// printf("-->%p\n", g->w);
+	// printf("-->%p\n", g->p);
 	if (g->inf != NULL)
 		free_parse_struct(g->inf);
-	if (g->p != NULL)
-		free(g->p);
 	if (g->s != NULL)
 		free(g->s);
-	if (g != NULL)
-		free(g);
+	if (g->w)
+		mlx_destroy_window(g->p, g->w);
+	free(g->p);
+	free(g);
 	return ;
 }
 
@@ -66,7 +69,8 @@ int	error_message_graph(int n, t_graphics *g)
 		ft_printf("Map too big.\n");
 	else if (n == 20)
 		perror("so_long error");
-	free_graph_struct(g);
+	
+	(void)g;
 	system("leaks -q so_long");
 	exit(EXIT_FAILURE);
 	return (EXIT_FAILURE);
@@ -81,7 +85,7 @@ int	error_message_parse(int n, t_parsemap *mapinf)
 	if (n == 3)
 		write(1, "Wrong walls in map.\n", 20);
 	if (n == 4)
-		write(1, "Wrong number of exit or players.\n", 33);
+		ft_printf("Wrong number of collectables, exits or players.\n");
 	if (n == 5)
 		write(1, "Unsolvable map.\n", 16);
 	if (n == 6)

@@ -6,58 +6,11 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:40:16 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/19 10:05:03 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:29:50 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static int	load_sprites(t_graphics *g, t_sprites *s)
-{
-	int	x;
-	int	y;
-
-	x = PX;
-	y = PX;
-	s->wall = mlx_xpm_file_to_image(g->p, GRASS, &x, &y);
-	if (!s->wall)
-		return (error_message_graph(20, g));
-	s->f = mlx_xpm_file_to_image(g->p, PATH, &x, &y);
-	if (!s->f)
-		return (error_message_graph(20, g));
-	s->apple = mlx_xpm_file_to_image(g->p, APPLE, &x, &y);
-	if (!s->apple)
-		return (error_message_graph(20, g));
-	s->excl = mlx_xpm_file_to_image(g->p, ROCK, &x, &y);
-	if (!s->excl)
-		return (error_message_graph(20, g));
-	s->exit_op = mlx_xpm_file_to_image(g->p, MASK, &x, &y);
-	if (!s->exit_op)
-		return (error_message_graph(20, g));
-	return (1);
-}
-
-static int	load_crash(t_graphics *g, t_sprites *s)
-{
-	int	x;
-	int	y;
-
-	x = PX;
-	y = PX;
-	s->crash_f = mlx_xpm_file_to_image(g->p, CRASHFRONT, &x, &y);
-	if (!s->exit_op)
-		return (error_message_graph(20, g));
-	s->crash_b = mlx_xpm_file_to_image(g->p, CRASHBACK, &x, &y);
-	if (!s->exit_op)
-		return (error_message_graph(20, g));
-	s->crash_l = mlx_xpm_file_to_image(g->p, CRASHLEFT, &x, &y);
-	if (!s->exit_op)
-		return (error_message_graph(20, g));
-	s->crash_r = mlx_xpm_file_to_image(g->p, CRASHRIGHT, &x, &y);
-	if (!s->exit_op)
-		return (error_message_graph(20, g));
-	return (1);
-}
 
 void	init_image(t_graphics *g, t_sprites *s)
 {
@@ -65,7 +18,6 @@ void	init_image(t_graphics *g, t_sprites *s)
 	int	j;
 
 	load_sprites(g, s);
-	load_crash(g, s);
 	j = 0;
 	while (g->inf->clean_map[j])
 	{
@@ -97,6 +49,16 @@ int	start_game(t_parsemap *mapinf)
 	s = malloc(sizeof(t_sprites));
 	if (!s || !g)
 		return (error_message_parse(20, mapinf));
+		
+	// s->f = NULL;
+	// s->wall = NULL;
+	// s->apple = NULL;
+	// s->excl = NULL;
+	// s->exit_op = NULL;
+	// s->crash_b = NULL;
+	// s->crash_f = NULL;
+	// s->crash_l = NULL;
+	// s->crash_r = NULL;
 	g->inf = mapinf;
 	g->s = s;
 	g->p = mlx_init();

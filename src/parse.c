@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:08 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/19 09:12:53 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:03:09 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static int	exit_obj_check(t_parsemap **mapinf)
 		}
 		x++;
 	}
-	if ((*mapinf)->player_num != 1 || (*mapinf)->exit_num != 1)
+	if ((*mapinf)->player_num != 1 || (*mapinf)->exit_num != 1
+		|| (*mapinf)->obj == 0)
 		return (error_message_parse(4, *mapinf));
 	return (1);
 }

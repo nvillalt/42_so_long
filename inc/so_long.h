@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:18 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/19 10:10:24 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:58:22 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void			move_character_d(t_graphics *g);
 void			check_exit(t_graphics *g);
 int				close_program(t_graphics *g);
 int				key_hook(int key, t_graphics *g);
+void			load_sprites(t_graphics *g, t_sprites *s);
 
 // VALIDATE
 int				validate_map(t_parsemap **mapinf);
