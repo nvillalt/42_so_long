@@ -34,8 +34,8 @@ void	move_character_d(t_graphics *g)
 		}
 		mlx_put_image_to_window(g->p, g->w, g->s->crash_r, y * PX, x * PX);
 		g->inf->player.mov += 1;
+		ft_printf("Taps: %d\n", g->inf->player.mov);
 	}
-	ft_printf("Taps: %d\n", g->inf->player.mov);
 	check_exit(g);
 }
 
@@ -61,8 +61,8 @@ void	move_character_a(t_graphics *g)
 		}
 		mlx_put_image_to_window(g->p, g->w, g->s->crash_l, y * PX, x * PX);
 		g->inf->player.mov += 1;
+		ft_printf("Taps: %d\n", g->inf->player.mov);
 	}
-	ft_printf("Taps: %d\n", g->inf->player.mov);
 	check_exit(g);
 }
 
@@ -88,8 +88,8 @@ void	move_character_w(t_graphics *g)
 		}
 		mlx_put_image_to_window(g->p, g->w, g->s->crash_b, y * PX, x * PX);
 		g->inf->player.mov += 1;
+		ft_printf("Taps: %d\n", g->inf->player.mov);
 	}
-	ft_printf("Taps: %d\n", g->inf->player.mov);
 	check_exit(g);
 }
 
@@ -115,7 +115,7 @@ void	move_character_s(t_graphics *g)
 		}
 		mlx_put_image_to_window(g->p, g->w, g->s->crash_f, y * PX, x * PX);
 		g->inf->player.mov += 1;
+		ft_printf("Taps: %d\n", g->inf->player.mov);
 	}
-	ft_printf("Taps: %d\n", g->inf->player.mov);
 	check_exit(g);
 }

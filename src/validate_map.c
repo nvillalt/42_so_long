@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:23:03 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/15 14:13:13 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/19 09:13:11 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	validate_map(t_parsemap **mapinf)
 	check_exit_player(mapinf);
 	flood_fill(mapinf, (*mapinf)->player.x, (*mapinf)->player.y);
 	if ((*mapinf)->obj != (*mapinf)->obj_check)
-		return (error_message(5));
+		return (error_message_parse(5, *mapinf));
 	if ((*mapinf)->exit_num != (*mapinf)->exit_check)
-		return (error_message(5));
+		return (error_message_parse(5, *mapinf));
 	return (1);
 }

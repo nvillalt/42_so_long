@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:40:16 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/15 17:53:47 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/19 09:25:38 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ static int	load_sprites(t_graphics *g, t_sprites *s)
 	y = PX;
 	s->wall = mlx_xpm_file_to_image(g->p, GRASS, &x, &y);
 	if (!s->wall)
-		return (error_message(20));
+		return (error_message_graph(20, g));
 	s->f = mlx_xpm_file_to_image(g->p, PATH, &x, &y);
 	if (!s->f)
-		return (error_message(20));
+		return (error_message_graph(20, g));
 	s->apple = mlx_xpm_file_to_image(g->p, APPLE, &x, &y);
 	if (!s->apple)
-		return (error_message(20));
+		return (error_message_graph(20, g));
 	s->excl = mlx_xpm_file_to_image(g->p, ROCK, &x, &y);
 	if (!s->excl)
-		return (error_message(20));
+		return (error_message_graph(20, g));
 	s->exit_op = mlx_xpm_file_to_image(g->p, MASK, &x, &y);
 	if (!s->exit_op)
-		return (error_message(20));
+		return (error_message_graph(20, g));
 	return (1);
 }
 
@@ -46,16 +46,16 @@ static int	load_crash(t_graphics *g, t_sprites *s)
 	y = PX;
 	s->crash_f = mlx_xpm_file_to_image(g->p, CRASHFRONT, &x, &y);
 	if (!s->exit_op)
-		return (error_message(20));
+		return (error_message_graph(20, g));
 	s->crash_b = mlx_xpm_file_to_image(g->p, CRASHBACK, &x, &y);
 	if (!s->exit_op)
-		return (error_message(20));
+		return (error_message_graph(20, g));
 	s->crash_l = mlx_xpm_file_to_image(g->p, CRASHLEFT, &x, &y);
 	if (!s->exit_op)
-		return (error_message(20));
+		return (error_message_graph(20, g));
 	s->crash_r = mlx_xpm_file_to_image(g->p, CRASHRIGHT, &x, &y);
 	if (!s->exit_op)
-		return (error_message(20));
+		return (error_message_graph(20, g));
 	return (1);
 }
 
@@ -88,7 +88,7 @@ void	init_image(t_graphics *g, t_sprites *s)
 	return ;
 }
 
-void	start_game(t_parsemap *mapinf)
+int	start_game(t_parsemap *mapinf)
 {
 	t_sprites	*s;
 	t_graphics	*g;
@@ -96,20 +96,19 @@ void	start_game(t_parsemap *mapinf)
 	g = malloc(sizeof(t_graphics));
 	s = malloc(sizeof(t_sprites));
 	if (!s || !g)
-		return ;
+		return (error_message_parse(20, mapinf));
 	g->inf = mapinf;
 	g->s = s;
 	g->p = mlx_init();
 	if (!g->p)
-		return ;
+		return (error_message_graph(20, g));
 	g->w = mlx_new_window(g->p, (mapinf->w_x * PX),
 			(mapinf->w_y * PX), "so_long");
 	if (!g->w)
-		return ;
+		return (error_message_graph(20, g));
 	init_image(g, s);
 	mlx_key_hook(g->w, &key_hook, g);
 	mlx_hook(g->w, 17, 0, close_program, g);
-	//mlx_destroy_display(g->p);
 	mlx_loop(g->p);
 }
 

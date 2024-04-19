@@ -6,7 +6,7 @@
 /*   By: nvillalt <nvillalt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:21:18 by nvillalt          #+#    #+#             */
-/*   Updated: 2024/04/15 17:50:55 by nvillalt         ###   ########.fr       */
+/*   Updated: 2024/04/19 09:27:09 by nvillalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,23 +105,24 @@ t_parsemap		*init_struct(void);
 int				parse_map(char *argv, t_parsemap **mapinf);
 
 // GRAPHICS & KEYBINDS
-void			start_game(t_parsemap *map);
+int				start_game(t_parsemap *mapinf);
 void			move_character_w(t_graphics *g);
 void			move_character_a(t_graphics *g);
 void			move_character_s(t_graphics *g);
 void			move_character_d(t_graphics *g);
 void			check_exit(t_graphics *g);
 int				close_program(t_graphics *g);
-
-// void			destroy_display(t_graph *mlx);
 int				key_hook(int key, t_graphics *g);
 
 // VALIDATE
 int				validate_map(t_parsemap **mapinf);
 
 // UTILS
-int				check_chars(char *str);
-int				error_message(int n);
+int				check_chars(char *str, t_parsemap **mapinf);
+int				error_message_parse(int n, t_parsemap *mapinf);
+int				error_message_graph(int n, t_graphics *g);
+void			free_parse_struct(t_parsemap *mapinf);
+void			free_graph_struct(t_graphics *g);
 int				count_height(t_parsemap **mapinf);
 
 // SUPPORT FUNCTIONS
